@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+    
+    <body>
+	
+	<!-- navigation -->
+	<nav th:replace="fragments::nav"></nav>
+	
+	<!-- header -->
+	<div class="container">
+		<div th:replace="fragments::header"></div>
+	</div>
+	<br/><br/>
+	
+	<!-- main content -->
+	<div class="container blue-main-content">
+	
+		<div th:unless="${#lists.isEmpty(mainList)}">
+			
+	<div class="row featurette" th:each="item : ${mainList}">
+			<div class="col-md-7">
+				
+				<h2 class="featurette-heading" th:utext="${item.name}"></h2>
+				<p class="lead" th:utext="${item.description}"></p>
+			</div>
+			<!-- image -->
+			<div class="col-md-5">
+				<br/>
+				<img class="blue-img" th:src="${item.url}" th:alt="${item.name}" 
+				th:title="${item.name}" />
+				
+			</div>
+		</div>
+	</div>
+		
+		<div th:if="${#lists.isEmpty(mainList)}">	
+			<p>List is empty</p>
+		</div>   
+
+	
+	<br/>
+	</div>
+	<br/><br/><br/>
+	
+    <!-- start of footer -->
+ 	<footer th:replace="fragments :: footer"></footer>
+
+    </body>
+</html>

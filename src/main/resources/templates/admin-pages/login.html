@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+    
+    <body>
+	
+	<!-- navigation -->
+	<nav th:replace="fragments::nav"></nav>
+	
+	<!-- header -->
+	<div class="container">
+		<div th:replace="fragments::header"></div>
+	</div>
+	<br/><br/>
+	
+	<!-- main content -->
+	<div class="container blue-main-content">
+  
+	<div class="container" th:if="${#httpServletRequest.remoteUser != null}">
+    		<p>If you need to sign out click here.
+    		</p>
+            <form th:action="@{/logout}" method="post">
+    	        <button class="btn-warning" type="submit">Sign Out</button>
+ 	        </form>
+ 	        </div>
+    
+          
+        <div class="container" th:if="${param.error}">
+            Invalid username and password.
+        </div>
+        
+        <div class="container" th:if="${param.logout}">
+            You have been logged out.
+        </div>
+        		
+        <div th:if="${#httpServletRequest.remoteUser == null}">
+        
+         <div class="container3">
+	      <form method="post" class="form-signin" th:action="@{/login}">
+	        <h2 class="form-signin-heading">Please sign in</h2>
+	        <label for="username" class="sr-only">User-name</label>
+	        <input type="text" name="username" class="form-control" placeholder="Username" />
+	        <label for="inputPassword" class="sr-only">Password</label>
+	        <input type="password" name="password" class="form-control" placeholder="Password" />
+	        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button></form>
+	        
+	        <br/><br/>
+	        
+	        
+	    </div>
+        
+        </div>
+	
+	<br/>
+	</div>
+	<br/><br/><br/>
+	
+    <!-- start of footer -->
+ 	<footer th:replace="fragments :: footer"></footer>
+
+    </body>
+</html>

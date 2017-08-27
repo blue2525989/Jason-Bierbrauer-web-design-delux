@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+    
+    <body>
+	
+	<!-- navigation -->
+	<nav th:replace="fragments::nav"></nav>
+	
+	<!-- header -->
+	<div class="container">
+		<div th:replace="fragments::header"></div>
+	</div>
+	<br/><br/>
+	
+	<!-- main content -->
+	<div class="container blue-main-content">
+	
+
+	<h2>Get in touch with me!</h2>
+	<p>
+		Are you interested in having me build you a web application? Feel free to send me an email with 
+		any questions that you have and I will be more than happy to answer them for you, and hopfully we 
+		can work out a deal to get your web application up and running!
+	</p>
+	<br/>
+	<form action="/sendMail" method="POST">
+		        <div class="row">
+		        
+		        	<div class="col-md-6">
+		        		<div class="form-group">
+		        			<label for="name">Please enter your name *</label>
+		        			<input id="name" type="text" name="name" class="form-control" placeholder="Please enter your first and last name *" 
+		        				required="required" data-error="Please enter your name."/>
+		        			<div class="help-block with-errors"></div>
+		        		</div>
+		        	</div>
+		        
+		        	<div class="col-md-6">
+		        		<div class="form-group">
+		        			<label for="phone">Please enter your phone number *</label>
+		        			<input id="phone" type="text" name="phone" class="form-control" 
+		        				placeholder="&#35;&#35;&#35;-&#35;&#35;&#35;-&#35;&#35;&#35;&#35;"
+		        				 required="required" data-error="Please enter a contact number" />
+		        				 <div class="help-block with-errors"></div>
+		        		</div>
+		        	</div>	
+	
+		        </div>
+		        <div class="row">
+		            <div class="col-md-6">
+		                <div class="form-group">
+		                    <label for="form_email">Email *</label>
+		                    <input id="form_email" type="email" name="email" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required."/>
+		                    <div class="help-block with-errors"></div>
+		                </div>
+		            </div>
+	
+		            <div class="col-md-6">
+		                <div class="form-group">
+		                    <label for="form_name">Subject *</label>
+		                    
+		                    <input id="form_name" type="text" name="subject" class="form-control" placeholder="Please enter a subject *" required="required" data-error="Firstname is required."/>
+		                    <div class="help-block with-errors"></div>
+		                </div>
+		            </div>
+		            
+		        </div>
+		        <div class="row">
+		            <div class="col-md-12">
+		                <div class="form-group">
+		                    <label for="form_message">Message *</label>
+		                    <textarea id="form_message" name="body" class="form-control" placeholder="Message for me *" rows="4" required="required" data-error="Please,leave us a message."></textarea>
+		                    <div class="help-block with-errors"></div>
+		                </div>
+		            </div>
+		            <div class="col-md-12" align="center">
+		            <br/>
+		                <input type="submit" class="btn btn-success btn-send" value="Send message"/>
+		            </div>
+		        </div>
+	</form>
+	
+	<br/>
+	</div>
+	<br/><br/><br/>
+	
+    <!-- start of footer -->
+ 	<footer th:replace="fragments :: footer"></footer>
+
+    </body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+	<title th:if="${metaFrag}" th:text="${metaFrag.title}"></title>
+	<title th:if="${metaFrag eq null}">Jason Bierbrauer</title>
+	
+	<link rel="icon" type="image" th:if="${metaFrag}" th:href="${metaFrag.iconUrl}" />
+	<link rel="icon" type="image" th:if="${metaFrag eq null}" href="https://s3-us-west-2.amazonaws.com/blue-company-images/system/jb-ico.png" />
+	
+	<meta name="author" content="Jason Bierbrauer"/>	
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+     <!-- meta description and keywords -->
+    
+    <meta name="description" th:if="${metaFrag}" th:content="${metaFrag.metaDescription}"/>
+    <meta name="description" th:if="${metaFrag eq null}" content="Jason Bierbrauer web application design. Building small busniess 
+    websites for local companies."/>
+    
+     <meta name="keywords" th:if="${metaFrag}" th:content="${metaFrag.metaKeywords}"/>
+     <meta name="keywords" th:if="${metaFrag eq null}" content="Jason Bierbrauer, jason bierbrauer, java web application, java, 
+     spring boot, spring mvc, spring"/>
+	<!-- content type -->
+	
+	<meta http-equiv="Content-Type" context="text/html; charset=UTF-8" />	
+	<!-- bootstrapJS -->
+	
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+	<script async="async"  src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous" />
+	<script  src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	
+	<!-- CSS styling -->
+	<link href="css/style.css" rel="stylesheet"/>
+	
+	<!-- OVERRIDE STYLE SHEET WITH STYLESHEET FRAGMENT DATA -->
+	<style th:if="${styleFrag}" th:inline="text">
+body{background:[[${styleFrag.backgroundColor}]];color:[[${styleFrag.textColor}]];}
+.blue-header{background:[[${styleFrag.headerBackgroundColor}]]!important;}
+.blue-main-content{color:[[${styleFrag.textColor}]];background:[[${styleFrag.contentBackgroundColor}]];}
+.blue-odd-table{color:[[${styleFrag.linkColor}]];}
+a{color:[[${styleFrag.linkColor}]];}a:hover{color:[[${styleFrag.linkColor}]];}
+</style>
+
+</head>
+    <body>
+       
+			<!--  HEADER -->
+			<header th:fragment="header">
+			<div align="center" class="blue-header">
+				<img class="blue-img img-fluid" src="https://s3-us-west-2.amazonaws.com/spa-blue/web-design/img/banner-blue-glow-880-200.png"
+					alt="Jason Bierbrauer's Web Design" title="Jason Bierbrauer's Web Design" />
+			
+			<br/>
+			</div>			
+			</header>
+			
+			<!-- MAIN NAVIGATION MENU -->
+				<nav  th:fragment="nav" class="navbar navbar-toggleable-md navbar-inverse" 
+					style="background-color:  #000000;">
+					<div align="center">
+					  <button class="navbar-toggler navbar-toggler-center" 
+					  	style="background-color:  #292b2c; bottom-left-radius: 10px; bottom-right-radius: 10px;"
+					  	type="button" data-toggle="collapse" data-target="#navbarNavDropdown" 
+					  	aria-controls="navbarNavDropdown" aria-expanded="false" 
+					  	aria-label="Toggle navigation">
+					  	
+						<span class="navbar-toggler-icon"></span>				  
+									  				    
+					  </button>
+				  	</div>
+				  	
+				  <div class="collapse navbar-collapse" id="navbarNavDropdown" 
+				  style="background-color:  #00000;">
+				  
+				    <ul class="navbar-nav">
+		         		<li class="nav-item active">
+							<a class="nav-link" href="/">Home</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="/services">Services offered</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="/contact">Get in Touch</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="/about">A little about me</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="/projects">Projects</a>
+						</li>						
+						<li th:if="${adminrole == true}" class="nav-item active">
+							<a class="nav-link" href="/admin">Administration Page</a>
+						</li>
+						<li th:if="${adminrole == true}" class="nav-item active">
+							<a class="nav-link" href="/login">Login/Logout</a>
+						</li> 
+		        	</ul>
+
+		      </div>
+		    </nav>
+		    
+		    			<!-- ADMIN PAGE MENU-->
+				<div  th:fragment="admin-menu" class="navbar navbar-inverse" >
+				  	
+				  <div style="background-color:  #000000; padding: 5%; border-radius: 10px">
+				  
+				    <ul class="navbar-nav">
+				    	<li class="nav-item active">
+							<a class="nav-link" href="/editSiteFormat">Edit Site Format</a>
+							<span class="small">Edit meta data, background colors and more.</span>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="/uploadS3">Upload Image Files</a>
+							<span class="small">Upload an image file for various uses.</span>
+						</li>
+		         		<li class="nav-item active">
+							<a class="nav-link" href="/editHome">Edit Home Page</a>
+							<span class="small">Edit the heading and paragraph text, also 
+								edit the reasons needed for a web business.</span>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="/editServices">Edit Services Page</a>
+							<span class="small">Edit the heading and paragraph text, also 
+								edit the services offered.</span>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="/editContact">Edit Contact Page</a>
+							<span class="small">Edit the heading and paragraph text, also 
+								edit the services offered.</span>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="/editAbout">Edit About Page</a>
+							<span class="small">Edit the about me section.</span>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="/editProjects">Edit Projects Page</a>
+							<span class="small">Edit the heading and paragraph text, also 
+								edit the projects completed.</span>
+						</li>
+		        	</ul>
+
+		      </div>
+		    </div>
+		    
+		    <!-- WORK ON ALL OF THESE MENUS FOR ADMIN/EDIT PAGES -->
+		    
+		    	<!-- EDIT HOME PAGE MENU-->
+				<div  th:fragment="edit-home-menu" class="navbar navbar-inverse" >
+				  	
+				  <div style="background-color:  #000000; padding: 5%; border-radius: 10px">
+				  
+				    <ul class="navbar-nav">
+				    	<li class="nav-item active">
+							<a class="nav-link" href="/editHomeContext">Edit Home page context</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="/editReasons">Edit Reasons list</a>
+						</li>
+		        	</ul>
+
+		      </div>
+		    </div>
+		    		    
+		    <!-- EDIT SERVICES PAGE MENU-->
+				<div  th:fragment="edit-services-menu" class="navbar navbar-inverse" >
+				  	
+				  <div style="background-color:  #000000; padding: 5%; border-radius: 10px">
+				  
+				    <ul class="navbar-nav">
+				    	<li class="nav-item active">
+							<a class="nav-link" href="/editServicesContext">Edit Services context</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="/editServicesOffered">Edit Services offered</a>
+						</li>
+		        	</ul>
+
+		      </div>
+		    </div>
+		    
+		    <!-- EDIT CONTACT PAGE MENU-->
+				<div  th:fragment="edit-contact-menu" class="navbar navbar-inverse" >
+				  	
+				  <div style="background-color:  #000000; padding: 5%; border-radius: 10px">
+				  
+				    <ul class="navbar-nav">
+				    	<li class="nav-item active">
+							<a class="nav-link" href="/editContactContext">Edit Contact context</a>
+						</li>
+		        	</ul>
+
+		      </div>
+		    </div>
+		    
+		    <!-- EDIT ABOUT PAGE MENU-->
+				<div  th:fragment="edit-about-menu" class="navbar navbar-inverse" >
+				  	
+				  <div style="background-color:  #000000; padding: 5%; border-radius: 10px">
+				  
+				    <ul class="navbar-nav">
+				    	<li class="nav-item active">
+							<a class="nav-link" href="/editAboutContext">Edit About context</a>
+						</li>
+		        	</ul>
+
+		      </div>
+		    </div>
+		    
+		    <!-- EDIT PROJECTS PAGE MENU-->
+				<div  th:fragment="edit-projects-menu" class="navbar navbar-inverse" >
+				  	
+				  <div style="background-color:  #000000; padding: 5%; border-radius: 10px">
+				  
+				    <ul class="navbar-nav">
+				    	<li class="nav-item active">
+							<a class="nav-link" href="/editProjetsContext">Edit Projects context</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="/editProjectsList">Edit Projects list</a>
+						</li>
+		        	</ul>
+
+		      </div>
+		    </div>
+		    
+		    <!-- EDIT SITE FORMAT MENU-->
+				<div  th:fragment="edit-site-format-menu" class="navbar navbar-inverse" >
+				  	
+				  <div style="background-color:  #000000; padding: 5%; border-radius: 10px">
+				  
+				    <ul class="navbar-nav">
+				    	<li class="nav-item active">
+							<a class="nav-link" href="/editMeta">Edit Meta data, Title, Icon</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="/editNav">Edit Navigation buttons</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="/editStyle">Edit Style sheet fragment</a>
+						</li>
+		        	</ul>
+
+		      </div>
+		    </div>
+		    
+		    <!-- UPLOADS PAGE MENU-->
+				<div  th:fragment="edit-uploads-menu" class="navbar navbar-inverse" >
+				  	
+				  <div style="background-color:  #000000; padding: 5%; border-radius: 10px">
+				  
+				    <ul class="navbar-nav">
+						<li class="nav-item active">
+							<a class="nav-link" href="/upload-s3">Upload Image Files</a>
+						</li>
+		        	</ul>
+
+		      </div>
+		    </div>
+		    
+			 
+		     <!-- start of footer -->
+			 <footer th:fragment="footer">
+				<div class="blue-footer sticky-bottom">
+					@Copyright Jason Bierbrauer
+				</div>			     
+			</footer>
+    </body>
+</html>

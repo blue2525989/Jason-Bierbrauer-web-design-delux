@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+    
+    <body>
+	
+	<!-- navigation -->
+	<nav th:replace="fragments::nav"></nav>
+	
+	<!-- header -->
+	<div class="container">
+		<div th:replace="fragments::header"></div>
+	</div>
+	<br/><br/>
+	
+	<!-- main content -->
+	<div class="container blue-main-content">
+  
+		<div align="center">
+			<h2>You have reached this page an error, please use the navigation to return to the site.</h2>
+		</div>
+	
+	<br/>
+	</div>
+	<br/><br/><br/>
+	
+    <!-- start of footer -->
+ 	<footer th:replace="fragments :: footer"></footer>
+
+    </body>
+</html>

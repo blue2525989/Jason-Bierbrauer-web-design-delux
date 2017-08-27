@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+    
+    <body>
+	
+	<!-- navigation -->
+	<nav th:replace="fragments::nav"></nav>
+	
+	<!-- header -->
+	<div class="container">
+		<div th:replace="fragments::header"></div>
+	</div>
+	<br/><br/>
+	
+	<!-- main content -->
+	<div class="container blue-main-content">
+	
+		<div th:unless="${#lists.isEmpty(mainList)}">
+			
+			
+		<h2>Check out some of the projects I have been working on!</h2>
+		<p>
+		An upcycled jewerly store, a compliment to an eBay store, this web application, and an example of a 
+		fast user interface. 
+		</p>
+				<table class="table table-inverse blue-table table-responsive">
+					<tbody>
+					
+						<tr th:each="item, idx : ${mainList}" th:class="${idx.odd} ? 'bg-primary' : 'bg-success'">
+							<td><a th:class="${idx.odd} ? 'blue-odd-table'"
+								th:href="${item.url}" th:alt="${item.name}"
+								th:title="${item.name}" th:text="${item.name}"></a></td>
+							<td th:utext="${item.description}"></td>
+						</tr>
+					
+					</tbody>
+				</table>
+			
+		</div>
+		
+		<div th:if="${#lists.isEmpty(mainList)}">	
+			<p>List is empty</p>
+		</div>   
+
+	
+	<br/>
+	</div>
+	<br/><br/><br/>
+	
+    <!-- start of footer -->
+ 	<footer th:replace="fragments :: footer"></footer>
+
+    </body>
+</html>

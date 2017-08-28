@@ -61,7 +61,7 @@ public class UploadS3Controller extends PermissionController {
 	@RequestMapping(value="/list-images", method=RequestMethod.GET)
 	public ModelAndView listFiles() {
 		ModelAndView model = new ModelAndView();
-		model.setViewName("edit/upload/list-files");
+		model.setViewName("list/list-files");
 		model.addObject("mainList", s3Service.listAllFileUploads());
 		checkRole(model);
 		return model;

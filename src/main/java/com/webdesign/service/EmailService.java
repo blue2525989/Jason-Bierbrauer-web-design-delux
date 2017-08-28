@@ -15,10 +15,40 @@ import com.amazonaws.services.simpleemail.model.Content;
 import com.amazonaws.services.simpleemail.model.Destination;
 import com.amazonaws.services.simpleemail.model.Message;
 import com.amazonaws.services.simpleemail.model.SendEmailRequest;
+import com.webdesign.model.SimpleContent;
+import com.webdesign.repository.ContactContextRepository;
 
 
 @Service("mailService")
 public class EmailService {
+	
+	/* adding page context, usually just a header and paragraph */
+	
+	@Autowired
+	private ContactContextRepository contextRepo;
+	
+	public String addNewContext(String title, String description) {
+		SimpleContent context = new SimpleContent(title, description);
+		contextRepo.save(context);
+		String saved = "The new page context has been saved.";
+		return saved;
+	}
+	
+	public String deleteContext(Long id) {
+		contextRepo.delete(id);
+		String saved = "The page context has been deleted.";
+		return saved;
+	}
+	
+	/* for displaying entire list */
+	public List<SimpleContent> listOfContext() {
+		return contextRepo.findAll();
+	}
+	
+	/* load context for page */
+	public SimpleContent loadSpecificContext(Long id) {
+		return contextRepo.findById(id);
+	}
 
 	 // Replace with a "To" address. If your account is still in the
     // sandbox, this address must be verified.
@@ -29,7 +59,7 @@ public class EmailService {
     
     @SuppressWarnings("deprecation")
     public String sendMail(String name, String phone, String email, 
-    	    String subject,  String body) {
+    	    String subject, String body) {
 
     	if (phone == null || phone == "") {
     		phone = "no phone #";

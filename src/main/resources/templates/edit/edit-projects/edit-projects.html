@@ -17,6 +17,70 @@
 	<div class="container blue-main-content">
 	<br/>
   
+		<br/>
+		<h2>Upload new files to storage.</h2>
+        
+        <form class="form-group" action="/uploadFileS3" method="POST" enctype="multipart/form-data">        
+	
+				<!-- half and half columns -->
+		        <div class="row">
+		        
+		        	<div class="col-md-6">
+		        		<div class="form-group">
+		        			<label for="title">Please enter a title *</label>
+		        			<input id="title" type="text" name="title" class="form-control" placeholder="Please enter a title *" 
+		        				required="required" data-error="Please enter a title."/>
+		        			<div class="help-block with-errors"></div>
+		        		</div>
+		        	</div>
+		        
+		        	<div class="col-md-6">
+						<!-- helper paragraph maybe? -->
+		        	</div>		
+	
+		        </div>
+		        <!-- full width text box -->
+		        <div class="row">
+		        
+		            <div class="col-md-12">
+		                <div class="form-group">
+		                    <label for="description">Brief file description *</label>
+		                    <textarea id="description" name="description" class="form-control" 
+		                    	placeholder="Enter a brief file description *" rows="4" required="required" 
+		                    	data-error="Please enter a brief description."></textarea>
+		                    <div class="help-block with-errors"></div>
+		                </div>
+		            </div>
+	
+		        </div>
+			 				 	
+			 	<br/>
+			    <button type="submit" id="upload-button">Upload to S3</button>
+		</form>
+        
+        <br/><br/>
+        <!-- delete based on ID -->
+        <h2>Delete entry based on ID number</h2>
+		<form action="/delete-projects" method="GET">
+			<label for="id">ID:</label><br />
+			<input type="text" name="id" class="ID"  
+				required="required" data-error="ID is required." />
+			<div class="help-block with-errors"></div><br />	
+			<h3>Click this button to delete entry</h3><br />
+			<button type="submit" id="button">Delete</button>
+			<br />
+		</form>
+				
+		<br/><br/>
+
+		<!-- list all for figuring out ID -->				
+		<h2>List all images by category</h2>
+		<form action="/list-projects" method="GET">
+			<button type="submit" id="button">List all</button><br />
+		</form>
+				
+				
+		<br/><br/>
 
 	
 	<br/>

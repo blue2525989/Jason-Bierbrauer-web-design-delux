@@ -15,10 +15,13 @@ import com.amazonaws.services.s3.AmazonS3Client;
 @Configuration
 public class MvcConfig extends WebMvcConfigurerAdapter {
 
-	@SuppressWarnings("unused")
 	private static final String URL = "";
+	private static final String UNAME = "";
+	private static final String PWORD = "";
+
+	@SuppressWarnings("unused")
+	private static final String LOCAL = "";
 	
-	private static final String LOCAL = "localhost:3306/";
 	// add view controllers for pages that deal with spring security
     public void addViewControllers(ViewControllerRegistry registry) {
 	    registry.addViewController("/login").setViewName("login");
@@ -43,9 +46,9 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 	 public DriverManagerDataSource dataSource() {
 		 DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
 		 driverManagerDataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		 driverManagerDataSource.setUrl("jdbc:mysql://" + LOCAL);
-		 driverManagerDataSource.setUsername("");
-		 driverManagerDataSource.setPassword("");
+		 driverManagerDataSource.setUrl("jdbc:mysql://" + URL);
+		 driverManagerDataSource.setUsername(UNAME);
+		 driverManagerDataSource.setPassword(PWORD);
 		 return driverManagerDataSource;
-	}
+	 }
 }

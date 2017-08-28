@@ -32,9 +32,9 @@ public class S3Service {
 	@Autowired
 	private FileUploadRepository fileUploadRepo;
 	
-	private final String S3URL = "https://s3-us-west-2.amazonaws.com/";
+	private final String S3URL = "";
 	
-	private final String FOLDERNAME = "spa-blue/web-design/img";
+	private final String FOLDERNAME = "";
 	
 	/**
 	 *  upload file to amazon s3 

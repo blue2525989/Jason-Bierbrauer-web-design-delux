@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.webdesign.model.HomeContext;
+import com.webdesign.model.Reason;
 import com.webdesign.model.SimpleContent;
 import com.webdesign.repository.HomeContextRepository;
 import com.webdesign.repository.ReasonsRepository;
@@ -69,7 +71,7 @@ public class HomeService {
 	private ReasonsRepository reasonsRepo;
 	
 	public String addNewReason(String title, String description) {
-		SimpleContent reason = new SimpleContent(title, description);
+		Reason reason = new Reason(title, description);
 		reasonsRepo.save(reason);
 		String saved = "The reason, " + title + ", has been saved.";
 		return saved;
@@ -82,7 +84,7 @@ public class HomeService {
 		return saved;
 	}
 	
-	public List<SimpleContent> listOfReasons() {
+	public List<Reason> listOfReasons() {
 		return reasonsRepo.findAll();
 	}
 
@@ -92,7 +94,7 @@ public class HomeService {
 	private HomeContextRepository contextRepo;
 	
 	public String addNewContext(String title, String description) {
-		SimpleContent context = new SimpleContent(title, description);
+		HomeContext context = new HomeContext(title, description);
 		contextRepo.save(context);
 		String saved = "The new page context has been saved.";
 		return saved;
@@ -105,12 +107,16 @@ public class HomeService {
 	}
 	
 	/* for displaying entire list */
-	public List<SimpleContent> listOfContext() {
+	public List<HomeContext> listOfContext() {
 		return contextRepo.findAll();
 	}
 	
 	/* load context for page */
-	public SimpleContent loadSpecificContext(Long id) {
+	public SimpleContent loadSpecificContext() {
+		Long id = (long) contextRepo.findAll().size() -1;
+		if (id < 0) {
+			return null;
+		}
 		return contextRepo.findById(id);
 	}
 }

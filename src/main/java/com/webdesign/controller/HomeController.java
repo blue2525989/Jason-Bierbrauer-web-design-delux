@@ -17,7 +17,8 @@ public class HomeController extends PermissionController {
    @RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
    public ModelAndView welcomePage() {
 	   ModelAndView model = new ModelAndView("index");
-       model.addObject("mainList", homeService.reasonList());
+       model.addObject("context", homeService.loadSpecificContext());
+       model.addObject("mainList", homeService.listOfReasons());
 		
 		/* sets either user_role or admin_role */
 		checkRole(model);

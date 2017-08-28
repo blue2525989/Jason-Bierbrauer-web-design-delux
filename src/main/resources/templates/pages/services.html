@@ -15,14 +15,15 @@
 	
 	<!-- main content -->
 	<div class="container blue-main-content">
-	
+		<h2 th:if="${context}" th:text="${context.name}"></h2>
+		<h2 th:if="${context == null}">Some of the services I offer!</h2>
+		<p th:if="${context}" th:text="${context.description}"></p>
+		<p th:if="${context == null}">
+			Anything from custom web design and maintenance to custom business solutions.
+		</p>
+				
 		<div th:unless="${#lists.isEmpty(mainList)}">
-			
-			
-	<h2>Some of the services I offer!</h2>
-	<p>
-	Anything from custom web design and maintenance to custom business solutions.
-	</p>
+							
 				<table class="table table-inverse blue-table table-responsive">
 					<tbody>
 					

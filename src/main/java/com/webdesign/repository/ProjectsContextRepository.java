@@ -2,11 +2,11 @@ package com.webdesign.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.webdesign.model.SimpleContent;
+import com.webdesign.model.ProjectsContext;
 
-public interface ProjectsContextRepository extends JpaRepository<SimpleContent, Long> {
+public interface ProjectsContextRepository extends JpaRepository<ProjectsContext, Long> {
 
-	SimpleContent findById(Long id);
+	ProjectsContext findById(Long id);
 	
-	SimpleContent findByName(String name);
+	ProjectsContext findByName(String name);
 }

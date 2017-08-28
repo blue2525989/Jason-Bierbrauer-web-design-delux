@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+    
+    <body>
+	
+	<!-- navigation -->
+	<nav th:replace="fragments::nav"></nav>
+	
+	<!-- header -->
+	<div class="container">
+		<div th:replace="fragments::header"></div>
+	</div>
+	<br/><br/>
+	
+	<!-- main content -->
+	<div class="container blue-main-content">
+	<br/>
+  
+	<div th:unless="${#lists.isEmpty(mainList)}">
+		<dl th:each="meta : ${mainList}">
+			<dt>	
+				<label>ID:</label>
+				<span th:if="${meta.id}" th:text="${meta.id}">ID: </span> <br/>
+				<span th:if="${meta.id eq null}">No ID available</span> <br/>	
+							
+				<label>Text color:</label>
+				<span th:if="${meta.title}" th:text="${meta.title}">Description: </span> <br/>
+				<span th:if="${meta.title eq null}">No text color available</span> <br/>
+				
+				<label>Main content background color:</label>
+				<span th:if="${meta.metaDescription}" th:text="${meta.metaDescription}">Title: </span> <br/>
+				<span th:if="${meta.metaDescription}">No main content background color available</span> <br/>
+				
+				<label>Even table background color:</label>
+				<span th:if="${meta.metaKeywords}" th:text="${meta.metaKeywords}">File name: </span> <br/>
+				<span th:if="${meta.metaKeywords eq null}">No even table color available</span> <br/>
+							
+			<!-- add the image from bucket -->
+       			<img th:attr="src=${meta.iconUrl},title=${meta.iconUrl},alt=${meta.iconUrl}" /><br/>
+           
+			</dt>
+			</dl>
+	</div>
+					
+	<div th:if="${#lists.isEmpty(listMain)}">	
+		<p>You have no updates...</p>
+	</div>
+		
+	<br/>
+	</div>
+	<br/><br/><br/>
+	
+    <!-- start of footer -->
+ 	<footer th:replace="fragments :: footer"></footer>
+
+    </body>
+</html>

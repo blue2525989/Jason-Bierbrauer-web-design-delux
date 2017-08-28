@@ -16,14 +16,17 @@
 	<!-- main content -->
 	<div class="container blue-main-content">
 	
+		<h2 th:if="${context}" th:text="${context.name}"></h2>
+		<h2 th:if="${context eq null}">
+			Check out some of the projects I have been working on!</h2>
+		<p th:if="${context}" th:text="${context.description}"></p>
+		<p th:if="${context eq null}">
+				An upcycled jewerly store, a compliment to an eBay store, this web application, and an example of a 
+			fast user interface. 
+		</p>	
+				
 		<div th:unless="${#lists.isEmpty(mainList)}">
 			
-			
-		<h2>Check out some of the projects I have been working on!</h2>
-		<p>
-		An upcycled jewerly store, a compliment to an eBay store, this web application, and an example of a 
-		fast user interface. 
-		</p>
 				<table class="table table-inverse blue-table table-responsive">
 					<tbody>
 					

@@ -5,9 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.webdesign.service.SiteFormatService;
 
 @Controller
 public class EditSiteFormatController extends PermissionController {
@@ -54,18 +54,20 @@ public class EditSiteFormatController extends PermissionController {
 	
 	/* database controllers */
 	
-	//@Autowired
-	/* need to create services for meta, style, and nav */
+	@Autowired
+	private SiteFormatService siteFormatService;
 	
 	/* repeat these controllers two more times for meta and nav */
 	
 	
 	@RequestMapping(value="/newStyle", method=RequestMethod.POST)
-	public ModelAndView newStyle(@RequestParam String title, @RequestParam String description,
-			@RequestParam MultipartFile file, MultipartRequest event) {
+	public ModelAndView newStyle(@RequestParam String backgroundColor, @RequestParam String headerBackgroundColor,
+			@RequestParam String textColor, @RequestParam String mainContentBackgroundColor, @RequestParam String evenTableBackgroundColor,
+			@RequestParam String oddTableBackgroundColor, @RequestParam String linkColor) {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("admin-pages/saved");
-		String saved = "replace with service.";
+		String saved = siteFormatService.addNewStyle(backgroundColor, headerBackgroundColor, textColor,
+				mainContentBackgroundColor, evenTableBackgroundColor, oddTableBackgroundColor, linkColor);
 		model.addObject("saved", saved);
 		checkRole(model);
 		return model;
@@ -75,7 +77,7 @@ public class EditSiteFormatController extends PermissionController {
 	public ModelAndView deleteStyle(@RequestParam Long id) {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("admin-pages/saved");
-		String saved = "replace with service";
+		String saved = siteFormatService.deleteStyle(id);
 		model.addObject("saved", saved);
 		checkRole(model);
 		return model;
@@ -84,8 +86,69 @@ public class EditSiteFormatController extends PermissionController {
 	@RequestMapping(value="/list-styles", method=RequestMethod.GET)
 	public ModelAndView listStyles() {
 		ModelAndView model = new ModelAndView();
-		model.setViewName("list/list-files");
-		model.addObject("mainList", "replace with service");
+		model.setViewName("list/list-style");
+		model.addObject("mainList", siteFormatService.listOfStyle());
+		checkRole(model);
+		return model;
+	}
+	
+	@RequestMapping(value="/newMeta", method=RequestMethod.POST)
+	public ModelAndView newMeta(@RequestParam String title, @RequestParam String iconUrl,
+			@RequestParam String metaDescription, @RequestParam String metaKeywords) {
+		ModelAndView model = new ModelAndView();
+		model.setViewName("admin-pages/saved");
+		String saved = siteFormatService.addNewMeta(title, iconUrl, metaDescription, metaKeywords);
+		model.addObject("saved", saved);
+		checkRole(model);
+		return model;
+	}
+	
+	@RequestMapping(value="/delete-meta", method=RequestMethod.GET)
+	public ModelAndView deleteMeta(@RequestParam Long id) {
+		ModelAndView model = new ModelAndView();
+		model.setViewName("admin-pages/saved");
+		String saved = siteFormatService.deleteMeta(id);
+		model.addObject("saved", saved);
+		checkRole(model);
+		return model;
+	}
+	
+	@RequestMapping(value="/list-metas", method=RequestMethod.GET)
+	public ModelAndView listMetas() {
+		ModelAndView model = new ModelAndView();
+		model.setViewName("list/list-meta");
+		model.addObject("mainList", siteFormatService.listOfMetas());
+		checkRole(model);
+		return model;
+	}
+	
+	@RequestMapping(value="/newNav", method=RequestMethod.POST)
+	public ModelAndView newNav(@RequestParam String homeButton, @RequestParam String servicesButton,
+			@RequestParam String contactButton, @RequestParam String aboutButton, @RequestParam String projectsButton,
+			@RequestParam String oddTableBackgroundColor, @RequestParam String linkColor) {
+		ModelAndView model = new ModelAndView();
+		model.setViewName("admin-pages/saved");
+		String saved = siteFormatService.addNewNav(homeButton, servicesButton, contactButton, aboutButton, projectsButton);
+		model.addObject("saved", saved);
+		checkRole(model);
+		return model;
+	}
+	
+	@RequestMapping(value="/delete-nav", method=RequestMethod.GET)
+	public ModelAndView deleteNav(@RequestParam Long id) {
+		ModelAndView model = new ModelAndView();
+		model.setViewName("admin-pages/saved");
+		String saved = siteFormatService.deleteNav(id);
+		model.addObject("saved", saved);
+		checkRole(model);
+		return model;
+	}
+	
+	@RequestMapping(value="/list-navs", method=RequestMethod.GET)
+	public ModelAndView listNavs() {
+		ModelAndView model = new ModelAndView();
+		model.setViewName("list/list-nav");
+		model.addObject("mainList", siteFormatService.listOfNavs());
 		checkRole(model);
 		return model;
 	}

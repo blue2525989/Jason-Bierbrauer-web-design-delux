@@ -15,12 +15,13 @@ import com.amazonaws.services.s3.AmazonS3Client;
 @Configuration
 public class MvcConfig extends WebMvcConfigurerAdapter {
 
+	
 	private static final String URL = "";
 	private static final String UNAME = "";
 	private static final String PWORD = "";
-
+	
 	@SuppressWarnings("unused")
-	private static final String LOCAL = "";
+	private static final String LOCAL = "localhost:3306/";
 	
 	// add view controllers for pages that deal with spring security
     public void addViewControllers(ViewControllerRegistry registry) {

@@ -16,13 +16,15 @@
 	<!-- main content -->
 	<div class="container blue-main-content">
 	
-
-	<h2>Get in touch with me!</h2>
-	<p>
-		Are you interested in having me build you a web application? Feel free to send me an email with 
-		any questions that you have and I will be more than happy to answer them for you, and hopfully we 
-		can work out a deal to get your web application up and running!
-	</p>
+				<h2 th:if="${context}" th:text="${context.name}"></h2>
+				<h2 th:if="${context eq null}">
+				Get in touch with me!</h2>
+				<p th:if="${context}" th:text="${context.description}"></p>
+				<p th:if="${context eq null}">
+					Are you interested in having me build you a web application? Feel free to send me an email with 
+					any questions that you have and I will be more than happy to answer them for you, and hopfully we 
+					can work out a deal to get your web application up and running!
+				</p>	
 	<br/>
 	<form action="/sendMail" method="POST">
 		        <div class="row">

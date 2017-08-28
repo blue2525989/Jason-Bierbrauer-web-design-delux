@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.webdesign.model.Services;
+import com.webdesign.model.ServicesContext;
 import com.webdesign.model.SimpleContent;
 import com.webdesign.repository.ServicesContextRepository;
 import com.webdesign.repository.ServicesRepository;
@@ -51,8 +53,8 @@ public class ServicesService {
 	@Autowired
 	private ServicesRepository servicesRepo;
 	
-	public String addNewService(String title, String description) {
-		SimpleContent service = new SimpleContent(title, description);
+	public String addNewService(String title, String description, String url) {
+		Services service = new Services(url, title, description);
 		servicesRepo.save(service);
 		String saved = "The service, " + title + ", has been saved.";
 		return saved;
@@ -65,7 +67,7 @@ public class ServicesService {
 		return saved;
 	}
 	
-	public List<SimpleContent> listOfProjects() {
+	public List<Services> listOfServices() {
 		return servicesRepo.findAll();
 	}
 	
@@ -75,7 +77,7 @@ public class ServicesService {
 	private ServicesContextRepository contextRepo;
 	
 	public String addNewContext(String title, String description) {
-		SimpleContent context = new SimpleContent(title, description);
+		ServicesContext context = new ServicesContext(title, description);
 		contextRepo.save(context);
 		String saved = "The new page context has been saved.";
 		return saved;
@@ -88,12 +90,16 @@ public class ServicesService {
 	}
 	
 	/* for displaying entire list */
-	public List<SimpleContent> listOfContext() {
+	public List<ServicesContext> listOfContext() {
 		return contextRepo.findAll();
 	}
 	
 	/* load context for page */
-	public SimpleContent loadSpecificContext(Long id) {
+	public ServicesContext loadSpecificContext() {
+		Long id = (long) contextRepo.findAll().size() -1;
+		if (id < 0) {
+			return null;
+		}
 		return contextRepo.findById(id);
 	}
 }

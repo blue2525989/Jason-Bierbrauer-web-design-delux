@@ -18,7 +18,8 @@ public class ServicesController extends PermissionController {
 	public ModelAndView location() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("pages/services");
-		model.addObject("mainList", servicesService.serviceList());
+		model.addObject("mainList", servicesService.listOfServices());
+		model.addObject("context", servicesService.loadSpecificContext());
 		
 		/* sets either user_role or admin_role */
 		checkRole(model);

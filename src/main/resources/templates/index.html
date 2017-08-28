@@ -16,13 +16,15 @@
 	<!-- main content -->
 	<div class="container blue-main-content">
 	
+		<h2 th:if="${context}" th:text="${context.name}"></h2>
+		<h2 th:if="${context == null}">Let me design your next business solution</h2>
+		<p th:if="${context}" th:text="${context.description}"></p>
+		<p th:if="${context == null}">
+			Below is a list of reasons why your business needs a footprint on the web!
+		</p>
+				
 		<div th:unless="${#lists.isEmpty(mainList)}">
 			
-			
-				<h2>Let me desgin your next business solution</h2>
-				<p>
-				Below is a list of reasons why your business needs a footprint on the web!
-				</p>
 				<table class="table table-inverse blue-table table-responsive">
 					<tbody>
 					

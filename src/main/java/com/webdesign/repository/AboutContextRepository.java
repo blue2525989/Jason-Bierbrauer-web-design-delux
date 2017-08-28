@@ -2,11 +2,11 @@ package com.webdesign.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.webdesign.model.SimpleContent;
+import com.webdesign.model.AboutContext;
 
-public interface AboutContextRepository extends JpaRepository<SimpleContent, Long> {
+public interface AboutContextRepository extends JpaRepository<AboutContext, Long> {
 
-	SimpleContent findById(Long id);
+	AboutContext findById(Long id);
 	
-	SimpleContent findByName(String name);
+	AboutContext findByName(String name);
 }

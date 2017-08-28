@@ -42,6 +42,18 @@ public class StyleSheetFragment {
 	@Size(min=4, max=15)
 	private String linkColor;
 
+	public StyleSheetFragment(String backgroundColor, String headerBackgroundColor, String textColor,
+			String mainContentBackgroundColor, String evenTableBackgroundColor, String oddTableBackgroundColor,
+			String linkColor) {
+		this.setBackgroundColor(backgroundColor);
+		this.setHeaderBackgroundColor(headerBackgroundColor);
+		this.setTextColor(textColor);
+		this.setMainContentBackgroundColor(mainContentBackgroundColor);
+		this.setEvenTableBackgroundColor(evenTableBackgroundColor);
+		this.setOddTableBackGroundColor(oddTableBackgroundColor);
+		this.setLinkColor(linkColor);
+	}
+
 	public Long getId() {
 		return id;
 	}

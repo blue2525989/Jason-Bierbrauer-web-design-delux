@@ -17,6 +17,37 @@
 	<div class="container blue-main-content">
 	<br/>
   
+	<div th:unless="${#lists.isEmpty(mainList)}">
+		<dl th:each="content : ${mainList}">
+			<dt>	
+				<label>ID:</label>
+				<span th:if="${content.id}" th:text="${content.id}">ID: </span> <br/>
+				<span th:if="${content.id eq null}">No ID available</span> <br/>	
+							
+				<label>Title:</label>
+				<span th:if="${content.title}" th:text="${content.title}">Title: </span> <br/>
+				<span th:if="${content.title eq null}">No title available</span> <br/>
+				
+				<label>Description:</label>
+				<span th:if="${content.description}" th:text="${content.description}">Description: </span> <br/>
+				<span th:if="${content.description eq null}">No description available</span> <br/>
+				
+				<label>URL:</label>
+				<span th:if="${content.url}" th:text="${content.url}">Description: </span> <br/>
+				<span th:if="${content.url eq null}">No URL available</span> <br/>
+
+							
+				<!-- add the image from bucket -->
+       			<img th:attr="src=${content.url},title=${content.title},alt=${content.description}" /><br/>
+           
+           
+			</dt>
+			</dl>
+	</div>
+					
+	<div th:if="${#lists.isEmpty(listMain)}">	
+		<p>You have no updates...</p>
+	</div>
 		
 	<br/>
 	</div>

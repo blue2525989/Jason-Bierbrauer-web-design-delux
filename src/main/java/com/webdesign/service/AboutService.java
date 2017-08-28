@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.webdesign.model.AboutContext;
 import com.webdesign.model.SimpleContent;
 import com.webdesign.repository.AboutContextRepository;
 
@@ -40,7 +41,7 @@ public class AboutService {
 	private AboutContextRepository contextRepo;
 	
 	public String addNewContext(String url, String title, String description) {
-		SimpleContent context = new SimpleContent(url, title, description);
+		AboutContext context = new AboutContext(url, title, description);
 		contextRepo.save(context);
 		String saved = "The new page context has been saved.";
 		return saved;
@@ -53,12 +54,16 @@ public class AboutService {
 	}
 	
 	/* for displaying entire list */
-	public List<SimpleContent> listOfContext() {
+	public List<AboutContext> listOfContext() {
 		return contextRepo.findAll();
 	}
 	
 	/* load context for page */
-	public SimpleContent loadSpecificContext(Long id) {
+	public AboutContext loadSpecificContext() {
+		Long id = (long) contextRepo.findAll().size() -1;
+		if (id < 0) {
+			return null;
+		}
 		return contextRepo.findById(id);
 	}
 }

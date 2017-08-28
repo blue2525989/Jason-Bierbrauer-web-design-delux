@@ -15,7 +15,7 @@ import com.amazonaws.services.simpleemail.model.Content;
 import com.amazonaws.services.simpleemail.model.Destination;
 import com.amazonaws.services.simpleemail.model.Message;
 import com.amazonaws.services.simpleemail.model.SendEmailRequest;
-import com.webdesign.model.SimpleContent;
+import com.webdesign.model.ContactContext;
 import com.webdesign.repository.ContactContextRepository;
 
 
@@ -28,7 +28,7 @@ public class EmailService {
 	private ContactContextRepository contextRepo;
 	
 	public String addNewContext(String title, String description) {
-		SimpleContent context = new SimpleContent(title, description);
+		ContactContext context = new ContactContext(title, description);
 		contextRepo.save(context);
 		String saved = "The new page context has been saved.";
 		return saved;
@@ -41,12 +41,16 @@ public class EmailService {
 	}
 	
 	/* for displaying entire list */
-	public List<SimpleContent> listOfContext() {
+	public List<ContactContext> listOfContext() {
 		return contextRepo.findAll();
 	}
 	
 	/* load context for page */
-	public SimpleContent loadSpecificContext(Long id) {
+	public ContactContext loadSpecificContext() {
+		Long id = (long) contextRepo.findAll().size() -1;
+		if (id < 0) {
+			return null;
+		}
 		return contextRepo.findById(id);
 	}
 

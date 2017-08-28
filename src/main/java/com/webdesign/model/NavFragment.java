@@ -34,6 +34,15 @@ public class NavFragment {
 	@Size(min=2, max=16)
 	private String projectsButton;
 
+	public NavFragment(String homeButton, String servicesButton, String contactButton, String aboutButton,
+			String projectsButton) {
+		this.setHomeButton(homeButton);
+		this.setServicesButton(servicesButton);
+		this.setContactButton(contactButton);
+		this.setAboutButton(aboutButton);
+		this.setProjectsButton(projectsButton);
+	}
+
 	public Long getId() {
 		return id;
 	}

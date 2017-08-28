@@ -2,11 +2,11 @@ package com.webdesign.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.webdesign.model.SimpleContent;
+import com.webdesign.model.Reason;
 
-public interface ReasonsRepository extends JpaRepository<SimpleContent, Long> {
+public interface ReasonsRepository extends JpaRepository<Reason, Long> {
 
-	SimpleContent findById(Long id);
+	Reason findById(Long id);
 	
-	SimpleContent findByName(String name);
+	Reason findByName(String name);
 }

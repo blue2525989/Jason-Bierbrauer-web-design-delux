@@ -13,14 +13,14 @@
 	</div>
 	<br/><br/>
 	
-	<!-- main content -->
+<!-- main content -->
 	<div class="container blue-main-content">
-	<br/>
-  
+  	<br/>
+
 		<br/>
-		<h2>Upload new files to storage.</h2>
+		<h2>Add a new project to the list.</h2>
         
-        <form class="form-group" action="/uploadFileS3" method="POST" enctype="multipart/form-data">        
+        <form class="form-group" action="/newProjects" method="POST">        
 	
 				<!-- half and half columns -->
 		        <div class="row">
@@ -28,25 +28,32 @@
 		        	<div class="col-md-6">
 		        		<div class="form-group">
 		        			<label for="title">Please enter a title *</label>
-		        			<input id="title" type="text" name="title" class="form-control" placeholder="Please enter a title *" 
-		        				required="required" data-error="Please enter a title."/>
+		        			<input id="title" type="text" name="title" class="form-control" 
+		        				placeholder="Please enter a header *" 
+		        				required="required" data-error="Please enter a header."/>
 		        			<div class="help-block with-errors"></div>
 		        		</div>
 		        	</div>
-		        
-		        	<div class="col-md-6">
-						<!-- helper paragraph maybe? -->
-		        	</div>		
-	
+
+					<div class="col-md-6">
+		        		<div class="form-group">
+		        			<label for="url">Please enter a URL *</label>
+		        			<input id="url" type="text" name="url" class="form-control" 
+		        				placeholder="Please enter a URL *" 
+		        				required="required" data-error="Please enter a url."/>
+		        			<div class="help-block with-errors"></div>
+		        		</div>
+		        	</div>
+		        	
 		        </div>
 		        <!-- full width text box -->
 		        <div class="row">
 		        
 		            <div class="col-md-12">
 		                <div class="form-group">
-		                    <label for="description">Brief file description *</label>
+		                    <label for="description">Brief paragraph *</label>
 		                    <textarea id="description" name="description" class="form-control" 
-		                    	placeholder="Enter a brief file description *" rows="4" required="required" 
+		                    	placeholder="Enter a paragraph to entice your customers *" rows="4" required="required" 
 		                    	data-error="Please enter a brief description."></textarea>
 		                    <div class="help-block with-errors"></div>
 		                </div>
@@ -55,7 +62,7 @@
 		        </div>
 			 				 	
 			 	<br/>
-			    <button type="submit" id="upload-button">Upload to S3</button>
+			    <button type="submit">Add new page context</button>
 		</form>
         
         <br/><br/>
@@ -67,7 +74,7 @@
 				required="required" data-error="ID is required." />
 			<div class="help-block with-errors"></div><br />	
 			<h3>Click this button to delete entry</h3><br />
-			<button type="submit" id="button">Delete</button>
+			<button type="submit" class="btn btn-info" id="button">Delete</button>
 			<br />
 		</form>
 				
@@ -76,12 +83,11 @@
 		<!-- list all for figuring out ID -->				
 		<h2>List all images by category</h2>
 		<form action="/list-projects" method="GET">
-			<button type="submit" id="button">List all</button><br />
+			<button type="submit" class="btn btn-info" id="button">List all</button><br />
 		</form>
 				
 				
 		<br/><br/>
-
 	
 	<br/>
 	</div>

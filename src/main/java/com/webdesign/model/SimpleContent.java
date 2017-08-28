@@ -6,7 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 public class SimpleContent {
@@ -18,7 +17,6 @@ public class SimpleContent {
 	private String url;
 	
 	@NotNull
-	@Size(min=2, max=24)
 	private String name;
 	
 	@Lob
@@ -35,6 +33,8 @@ public class SimpleContent {
 		this.setName(name);
 		this.setDescription(description);
 	}
+	
+	public SimpleContent() {};
 
 	public String getName() {
 		return name;

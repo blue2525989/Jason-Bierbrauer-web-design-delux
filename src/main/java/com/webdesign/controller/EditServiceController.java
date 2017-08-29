@@ -80,11 +80,11 @@ public class EditServiceController extends PermissionController {
 	/* services */
 	
 	@RequestMapping(value="/newServices", method=RequestMethod.POST)
-	public ModelAndView newAboutContext(@RequestParam String url, @RequestParam String title,
+	public ModelAndView newAboutContext(@RequestParam String title,
 			@RequestParam String description) {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("admin-pages/saved");
-		String saved = servicesService.addNewService(url, title, description);
+		String saved = servicesService.addNewService(title, description);
 		model.addObject("saved", saved);
 		checkRole(model);
 		return model;

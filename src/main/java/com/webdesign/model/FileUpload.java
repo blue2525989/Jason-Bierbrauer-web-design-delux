@@ -27,6 +27,8 @@ public class FileUpload {
 	
 	@NotNull
 	private String filename;
+	
+	public FileUpload() {}
 
 	public Long getId() {
 		return id;

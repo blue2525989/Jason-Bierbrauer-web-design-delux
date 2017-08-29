@@ -42,6 +42,8 @@ public class NavFragment {
 		this.setAboutButton(aboutButton);
 		this.setProjectsButton(projectsButton);
 	}
+	
+	public NavFragment() {}
 
 	public Long getId() {
 		return id;

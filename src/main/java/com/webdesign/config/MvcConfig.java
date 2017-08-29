@@ -21,7 +21,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 	private static final String PWORD = "";
 	
 	@SuppressWarnings("unused")
-	private static final String LOCAL = "localhost:3306/";
+	private static final String LOCAL = "";
 	
 	// add view controllers for pages that deal with spring security
     public void addViewControllers(ViewControllerRegistry registry) {

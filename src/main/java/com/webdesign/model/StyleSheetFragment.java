@@ -53,6 +53,8 @@ public class StyleSheetFragment {
 		this.setOddTableBackGroundColor(oddTableBackgroundColor);
 		this.setLinkColor(linkColor);
 	}
+	
+	public StyleSheetFragment() {}
 
 	public Long getId() {
 		return id;

@@ -16,14 +16,16 @@
 	<!-- main content -->
 	<div class="container blue-main-content">
 	
-		<h2 th:if="${context}" th:text="${context.name}"></h2>
-		<h2 th:if="${context eq null}">
-			Check out some of the projects I have been working on!</h2>
-		<p th:if="${context}" th:text="${context.description}"></p>
-		<p th:if="${context eq null}">
-				An upcycled jewerly store, a compliment to an eBay store, this web application, and an example of a 
-			fast user interface. 
-		</p>	
+		<div th:unless="${#lists.isEmpty(contextList)}">
+			<div th:each="context : ${contextList}">
+				<h2 th:utext="${context.name}"></h2>
+				<p th:utext="${context.description}"></p>
+			</div>
+		</div>
+		<div th:if="${#lists.isEmpty(contextList)}">
+			<h2>Create a eye-popping header</h2>	
+			<p>Write and interesting paragraph.</p>
+		</div> 
 				
 		<div th:unless="${#lists.isEmpty(mainList)}">
 			
@@ -33,7 +35,8 @@
 						<tr th:each="item, idx : ${mainList}" th:class="${idx.odd} ? 'bg-primary' : 'bg-success'">
 							<td><a th:class="${idx.odd} ? 'blue-odd-table'"
 								th:href="${item.url}" th:alt="${item.name}"
-								th:title="${item.name}" th:text="${item.name}"></a></td>
+								th:title="${item.name}" th:text="${item.name}"
+								target="_blank" ></a></td>
 							<td th:utext="${item.description}"></td>
 						</tr>
 					

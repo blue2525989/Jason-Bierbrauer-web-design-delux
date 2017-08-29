@@ -46,12 +46,16 @@ public class EmailService {
 	}
 	
 	/* load context for page */
-	public ContactContext loadSpecificContext() {
-		Long id = (long) contextRepo.findAll().size() -1;
-		if (id < 0) {
+	public List<ContactContext> loadSpecificContext() {
+		List<ContactContext> listFull = contextRepo.findAll();
+		List<ContactContext> list = new ArrayList<ContactContext>();
+		try {
+			list.add(listFull.get(listFull.size()-1));
+		} catch (ArrayIndexOutOfBoundsException e) {
 			return null;
 		}
-		return contextRepo.findById(id);
+		
+		return list;
 	}
 
 	 // Replace with a "To" address. If your account is still in the

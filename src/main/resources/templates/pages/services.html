@@ -15,12 +15,16 @@
 	
 	<!-- main content -->
 	<div class="container blue-main-content">
-		<h2 th:if="${context}" th:text="${context.name}"></h2>
-		<h2 th:if="${context == null}">Some of the services I offer!</h2>
-		<p th:if="${context}" th:text="${context.description}"></p>
-		<p th:if="${context == null}">
-			Anything from custom web design and maintenance to custom business solutions.
-		</p>
+		<div th:unless="${#lists.isEmpty(contextList)}">
+			<div th:each="context : ${contextList}">
+				<h2 th:utext="${context.name}"></h2>
+				<p th:utext="${context.description}"></p>
+			</div>
+		</div>
+		<div th:if="${#lists.isEmpty(contextList)}">
+			<h2>Create a eye-popping header</h2>	
+			<p>Write and interesting paragraph.</p>
+		</div> 
 				
 		<div th:unless="${#lists.isEmpty(mainList)}">
 							

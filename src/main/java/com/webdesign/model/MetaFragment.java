@@ -35,9 +35,7 @@ public class MetaFragment {
 		this.setMetaKeywords(metaKeywords);
 	}
 
-	public MetaFragment() {
-		// TODO Auto-generated constructor stub
-	}
+	public MetaFragment() {}
 
 	public Long getId() {
 		return id;

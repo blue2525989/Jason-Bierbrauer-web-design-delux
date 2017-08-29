@@ -19,7 +19,7 @@ public class EmailController extends PermissionController {
 	public ModelAndView contactPage() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("pages/email");
-		model.addObject("context", mailService.loadSpecificContext());
+		model.addObject("contextList", mailService.loadSpecificContext());
 		
 		/* sets either user_role or admin_role */
 		checkRole(model);

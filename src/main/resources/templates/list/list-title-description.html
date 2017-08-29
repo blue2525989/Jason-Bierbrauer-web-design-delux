@@ -25,12 +25,12 @@
 				<span th:if="${content.id eq null}">No ID available</span> <br/>	
 							
 				<label>Title:</label>
-				<span th:if="${content.title}" th:text="${content.title}">Title: </span> <br/>
-				<span th:if="${content.title eq null}">No title available</span> <br/>
+				<span th:if="${content.getName()}" th:text="${content.getName()}">Title: </span> <br/>
+				<span th:if="${content.getName() eq null}">No title available</span> <br/>
 				
 				<label>Description:</label>
-				<span th:if="${content.description}" th:text="${content.description}">Description: </span> <br/>
-				<span th:if="${content.description eq null}">No description available</span> <br/>
+				<span th:if="${content.getDescription()}" th:text="${content.getDescription()}">Description: </span> <br/>
+				<span th:if="${content.getDescription() eq null}">No description available</span> <br/>
 				           
 			</dt>
 			</dl>

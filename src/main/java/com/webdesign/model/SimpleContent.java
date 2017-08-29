@@ -34,7 +34,7 @@ public class SimpleContent {
 		this.setDescription(description);
 	}
 	
-	public SimpleContent() {};
+	public SimpleContent() {}
 
 	public String getName() {
 		return name;

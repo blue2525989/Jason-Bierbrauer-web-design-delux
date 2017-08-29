@@ -19,7 +19,7 @@ public class ProjectsController extends PermissionController {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("pages/projects");
 		model.addObject("mainList", projectsService.listOfProjects());
-		model.addObject("context", projectsService.loadSpecificContext());
+		model.addObject("contextList", projectsService.loadSpecificContext());
 		
 		/* sets either user_role or admin_role */
 		checkRole(model);

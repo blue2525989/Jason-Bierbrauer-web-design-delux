@@ -16,29 +16,27 @@
 	<!-- main content -->
 	<div class="container blue-main-content">
 	
-		<div th:unless="${context == null}">
-			
-	<div class="row featurette">
-			<div class="col-md-7">
+	<!-- main content -->
+		<div th:unless="${#lists.isEmpty(contextList)}">
+			<div class="row featurette" th:each="context : ${contextList}">
+				<div class="col-md-7">
+					<h2 class="featurette-heading" th:utext="${context.name}"></h2>
+					<p class="lead" th:utext="${context.description}"></p>
+					
+				</div>
 				
-				<h2 class="featurette-heading" th:utext="${context.name}"></h2>
-				<p class="lead" th:utext="${context.description}"></p>
-			</div>
-			<!-- image -->
-			<div class="col-md-5">
+				<div class="col-md-5">
 				<br/>
-				<img class="blue-img" th:src="${context.url}" th:alt="${context.name}" 
-				th:title="${context.name}" />
-				
+					<img class="blue-img" th:src="${context.url}" th:alt="${context.name}" 
+						th:title="${context.name}" />
+				</div>
 			</div>
 		</div>
-	</div>
-		
-		<div th:if="${context eq null}">	
-			<p>List is empty</p>
-		</div>   
-
-	
+		<div th:if="${#lists.isEmpty(contextList)}">
+			<h2>Create a eye-popping header</h2>	
+			<p>Write and interesting paragraph.</p>
+		</div> 
+			
 	<br/>
 	</div>
 	<br/><br/><br/>

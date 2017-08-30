@@ -28,15 +28,25 @@ public class EmailService {
 	private ContactContextRepository contextRepo;
 	
 	public String addNewContext(String title, String description) {
-		ContactContext context = new ContactContext(title, description);
-		contextRepo.save(context);
-		String saved = "The new page context has been saved.";
+		String saved = "";
+		try {
+			ContactContext context = new ContactContext(title, description);
+			contextRepo.save(context);
+			saved = "The new page context has been saved.";
+		} catch (Exception e) {
+			saved = "You have entered an incorrect parameter.";
+		}		
 		return saved;
 	}
 	
 	public String deleteContext(Long id) {
-		contextRepo.delete(id);
-		String saved = "The page context has been deleted.";
+		String saved = "";
+		try {
+			contextRepo.delete(id);
+			saved = "The page context has been deleted.";
+		} catch (Exception e) {
+			saved = "You have entered an incorrect parameter.";
+		}		
 		return saved;
 	}
 	

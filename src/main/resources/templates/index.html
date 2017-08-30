@@ -32,8 +32,9 @@
 				<table class="table table-inverse blue-table table-responsive">
 					<tbody>
 					
-						<tr th:each="item, idx : ${mainList}" th:class="${idx.odd} ? 'bg-primary' : 'bg-success'">
-							<td th:utext="${item.name}" th:class="${idx.odd} ? 'blue-odd-table'"></td>
+						<tr th:each="item, idx : ${mainList}" 
+								th:class="${idx.odd} ? 'blue-odd-table' : 'blue-even-table'">
+							<td th:utext="${item.name}"></td>
 							<td th:utext="${item.description}"></td>
 						</tr>
 					

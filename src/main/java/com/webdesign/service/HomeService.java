@@ -18,16 +18,25 @@ public class HomeService {
 	private ReasonsRepository reasonsRepo;
 	
 	public String addNewReason(String title, String description) {
-		Reason reason = new Reason(title, description);
-		reasonsRepo.save(reason);
-		String saved = "The reason, " + title + ", has been saved.";
+		String saved = "";
+		try {
+			Reason reason = new Reason(title, description);
+			reasonsRepo.save(reason);
+			saved = "The new page context has been saved.";
+		} catch (Exception e) {
+			saved = "You have entered an incorrect parameter.";
+		}		
 		return saved;
 	}
 	
 	public String deleteReason(Long id) {
-		String title = reasonsRepo.findById(id).getName();
-		reasonsRepo.delete(id);
-		String saved = "The reason, " + title + ", has been deleted.";
+		String saved = "";
+		try {
+			reasonsRepo.delete(id);
+			saved = "The page context has been deleted.";
+		} catch (Exception e) {
+			saved = "You have entered an incorrect parameter.";
+		}		
 		return saved;
 	}
 	
@@ -41,15 +50,25 @@ public class HomeService {
 	private HomeContextRepository contextRepo;
 	
 	public String addNewContext(String title, String description) {
-		HomeContext context = new HomeContext(title, description);
-		contextRepo.save(context);
-		String saved = "The new page context has been saved.";
+		String saved = "";
+		try {
+			HomeContext context = new HomeContext(title, description);
+			contextRepo.save(context);
+			saved = "The new page context has been saved.";
+		} catch (Exception e) {
+			saved = "You have entered an incorrect parameter.";
+		}		
 		return saved;
 	}
 	
 	public String deleteContext(Long id) {
-		contextRepo.delete(id);
-		String saved = "The page context has been deleted.";
+		String saved = "";
+		try {
+			contextRepo.delete(id);
+			saved = "The page context has been deleted.";
+		} catch (Exception e) {
+			saved = "You have entered an incorrect parameter.";
+		}		
 		return saved;
 	}
 	

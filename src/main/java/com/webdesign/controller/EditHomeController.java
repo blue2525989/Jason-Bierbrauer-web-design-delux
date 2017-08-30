@@ -16,7 +16,8 @@ public class EditHomeController extends PermissionController {
 	public ModelAndView editHome() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("edit/edit-home-page");
-		
+		/* add style, meta, navigation fragments */
+		addFragments(model);		
 		/* sets either user_role or admin_role */
 		checkRole(model);
 		return model;
@@ -26,7 +27,8 @@ public class EditHomeController extends PermissionController {
 	public ModelAndView editHomeContext() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("edit/edit-home-page/edit-context");
-		
+		/* add style, meta, navigation fragments */
+		addFragments(model);		
 		/* sets either user_role or admin_role */
 		checkRole(model);
 		return model;
@@ -36,7 +38,8 @@ public class EditHomeController extends PermissionController {
 	public ModelAndView editReasons() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("edit/edit-home-page/edit-reasons");
-		
+		/* add style, meta, navigation fragments */
+		addFragments(model);		
 		/* sets either user_role or admin_role */
 		checkRole(model);
 		return model;
@@ -54,6 +57,8 @@ public class EditHomeController extends PermissionController {
 		model.setViewName("admin-pages/saved");
 		String saved = homeService.addNewContext(title, description);
 		model.addObject("saved", saved);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		checkRole(model);
 		return model;
 	}
@@ -64,6 +69,8 @@ public class EditHomeController extends PermissionController {
 		model.setViewName("admin-pages/saved");
 		String saved = homeService.deleteContext(id);
 		model.addObject("saved", saved);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		checkRole(model);
 		return model;
 	}
@@ -74,6 +81,8 @@ public class EditHomeController extends PermissionController {
 		model.setViewName("list/list-title-description");
 		model.addObject("mainList", homeService.listOfContext());
 		checkRole(model);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		return model;
 	}
 	
@@ -87,6 +96,8 @@ public class EditHomeController extends PermissionController {
 		String saved = homeService.addNewReason(title, description);
 		model.addObject("saved", saved);
 		checkRole(model);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		return model;
 	}
 	
@@ -97,6 +108,8 @@ public class EditHomeController extends PermissionController {
 		String saved = homeService.deleteReason(id);
 		model.addObject("saved", saved);
 		checkRole(model);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		return model;
 	}
 	
@@ -106,6 +119,8 @@ public class EditHomeController extends PermissionController {
 		model.setViewName("list/list-title-description");
 		model.addObject("mainList", homeService.listOfReasons());
 		checkRole(model);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		return model;
 	}
 }

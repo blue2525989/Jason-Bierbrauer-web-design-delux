@@ -12,7 +12,8 @@ public class AdminController extends PermissionController {
 	public ModelAndView admin() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("admin-pages/admin");
-		
+		/* add style, meta, navigation fragments */
+		addFragments(model);		
 		/* sets either user_role or admin_role */
 		checkRole(model);
 		return model;

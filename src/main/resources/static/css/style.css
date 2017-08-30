@@ -38,6 +38,11 @@ body {
 }
 .blue-odd-table {
 	color: #000000;
+	background: #ffffff;
+}
+.blue-even-table {
+	color: #ffffff;
+	background: #000000;
 }
 a {
 	color: #000000;

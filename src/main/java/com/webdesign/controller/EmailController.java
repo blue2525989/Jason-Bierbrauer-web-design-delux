@@ -20,7 +20,8 @@ public class EmailController extends PermissionController {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("pages/email");
 		model.addObject("contextList", mailService.loadSpecificContext());
-		
+		/* add style, meta, navigation fragments */
+		addFragments(model);		
 		/* sets either user_role or admin_role */
 		checkRole(model);
 		return model;
@@ -37,7 +38,8 @@ public class EmailController extends PermissionController {
 		//create new email and send it
 		String saved = mailService.sendMail(name, phone, email, subject, body);
 		model.addObject("saved", saved);
-		
+		/* add style, meta, navigation fragments */
+		addFragments(model);		
 		/* sets either user_role or admin_role */
 		checkRole(model);
 		return model;

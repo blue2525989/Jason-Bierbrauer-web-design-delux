@@ -20,15 +20,15 @@
 		<br/>
 		<h2>Upload new files to storage.</h2>
         
-        <form class="form-group" action="" method="POST" enctype="multipart/form-data">        
+        <form class="form-group" action="/newNav" method="POST">        
 	
 				<!-- half and half columns -->
 		        <div class="row">
 		        
 		        	<div class="col-md-6">
 		        		<div class="form-group">
-		        			<label for="title">Please enter a title *</label>
-		        			<input id="title" type="text" name="title" class="form-control" placeholder="Please enter a title *" 
+		        			<label for="homeButton">Please enter a title for the Home button *</label>
+		        			<input id="homeButton" type="text" name="homeButton" class="form-control" placeholder="Please enter a title for the Home button*" 
 		        				required="required" data-error="Please enter a title."/>
 		        			<div class="help-block with-errors"></div>
 		        		</div>
@@ -36,12 +36,12 @@
 		        
 		        	<div class="col-md-6">
 		        		<div class="form-group">
-		        			<label for="file">Please select a file</label>
-						 		<input name="file" class="form-control-file col-8" type="file" id="file-chooser" 
-						 			required="required" data-error="File is required." />
-								<div class="help-block with-errors"></div> <br/>
+		        			<label for="servicesButtom">Please enter a title for the Services button *</label>
+		        			<input id="servicesButton" type="text" name="servicesButton" class="form-control" placeholder="Please enter a title for the Services button *" 
+		        				required="required" data-error="Please enter a ."/>
+		        			<div class="help-block with-errors"></div>
 		        		</div>
-		        	</div>	
+		        	</div>
 	
 		        </div>
 		        <!-- half and half columns -->
@@ -49,8 +49,8 @@
 		        
 		        	<div class="col-md-6">
 		        		<div class="form-group">
-		        			<label for="title">Please enter a title *</label>
-		        			<input id="title" type="text" name="title" class="form-control" placeholder="Please enter a title *" 
+		        			<label for="contactButton">Please enter a title for the Contact button *</label>
+		        			<input id="contactButton" type="text" name="contactButton" class="form-control" placeholder="Please enter a title for the Contact button *" 
 		        				required="required" data-error="Please enter a title."/>
 		        			<div class="help-block with-errors"></div>
 		        		</div>
@@ -58,8 +58,8 @@
 		        	
 		        	<div class="col-md-6">
 		        		<div class="form-group">
-		        			<label for="title">Please enter a title *</label>
-		        			<input id="title" type="text" name="title" class="form-control" placeholder="Please enter a title *" 
+		        			<label for="aboutButton">Please enter a title for the About button *</label>
+		        			<input id="aboutButton" type="text" name="aboutButton" class="form-control" placeholder="Please enter a title for the About button *" 
 		        				required="required" data-error="Please enter a title."/>
 		        			<div class="help-block with-errors"></div>
 		        		</div>
@@ -71,27 +71,19 @@
 		        
 		        	<div class="col-md-6">
 		        		<div class="form-group">
-		        			<label for="title">Please enter a title *</label>
-		        			<input id="title" type="text" name="title" class="form-control" placeholder="Please enter a title *" 
+		        			<label for="projectsButton">Please enter a title for the Projects button *</label>
+		        			<input id="projectsButton" type="text" name="projectsButton" class="form-control" placeholder="Please enter a title for the Projects button *" 
 		        				required="required" data-error="Please enter a title."/>
 		        			<div class="help-block with-errors"></div>
 		        		</div>
 		        	</div>
-		        	
-		        	<div class="col-md-6">
-		        		<div class="form-group">
-		        			<label for="title">Please enter a title *</label>
-		        			<input id="title" type="text" name="title" class="form-control" placeholder="Please enter a title *" 
-		        				required="required" data-error="Please enter a title."/>
-		        			<div class="help-block with-errors"></div>
-		        		</div>
-		        	</div>
+
 	
 		        </div>
 
 			 				 	
 			 	<br/>
-			    <button type="submit" id="upload-button">Upload to S3</button>
+			    <button type="submit" id="upload-button">New Navigation</button>
 		</form>
         
         <br/><br/>

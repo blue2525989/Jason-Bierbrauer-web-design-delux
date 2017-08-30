@@ -16,6 +16,8 @@ public class EditContactController extends PermissionController {
 	public ModelAndView editContact() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("edit/edit-contact-page");
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		
 		/* sets either user_role or admin_role */
 		checkRole(model);
@@ -26,6 +28,8 @@ public class EditContactController extends PermissionController {
 	public ModelAndView editContactContext() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("edit/edit-contact/edit-context");
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		
 		/* sets either user_role or admin_role */
 		checkRole(model);
@@ -43,6 +47,8 @@ public class EditContactController extends PermissionController {
 		model.setViewName("admin-pages/saved");
 		String saved = emailService.addNewContext(title, description);
 		model.addObject("saved", saved);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		checkRole(model);
 		return model;
 	}
@@ -53,6 +59,8 @@ public class EditContactController extends PermissionController {
 		model.setViewName("admin-pages/saved");
 		String saved = emailService.deleteContext(id);
 		model.addObject("saved", saved);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		checkRole(model);
 		return model;
 	}
@@ -62,6 +70,8 @@ public class EditContactController extends PermissionController {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("list/list-title-description");
 		model.addObject("mainList", emailService.listOfContext());
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		checkRole(model);
 		return model;
 	}

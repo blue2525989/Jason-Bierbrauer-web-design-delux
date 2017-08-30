@@ -19,7 +19,8 @@ public class HomeController extends PermissionController {
 	   ModelAndView model = new ModelAndView("index");
        model.addObject("contextList", homeService.loadSpecificContext());
        model.addObject("mainList", homeService.listOfReasons());
-		
+		/* add style, meta, navigation fragments */
+		addFragments(model);		
 		/* sets either user_role or admin_role */
 		checkRole(model);
 		return model;

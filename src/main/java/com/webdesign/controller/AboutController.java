@@ -20,7 +20,8 @@ public class AboutController extends PermissionController {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("pages/about");
 		model.addObject("contextList", aboutService.loadSpecificContext());
-		
+		/* add style, meta, navigation fragments */
+		addFragments(model);		
 		/* sets either user_role or admin_role */
 		checkRole(model);
 		return model;

@@ -21,7 +21,8 @@ public class EditAboutController extends PermissionController {
 	public ModelAndView editAboutPage() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("edit/edit-about-page");
-		
+		/* add style, meta, navigation fragments */
+		addFragments(model);		
 		/* sets either user_role or admin_role */
 		checkRole(model);
 		return model;
@@ -34,6 +35,8 @@ public class EditAboutController extends PermissionController {
 		
 		model.addObject("imageList", s3Service.listAllFileUploads());
 
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		/* sets either user_role or admin_role */
 		checkRole(model);
 		return model;
@@ -50,6 +53,8 @@ public class EditAboutController extends PermissionController {
 		String saved = aboutService.addNewContext(url, title, description);
 		model.addObject("saved", saved);
 		checkRole(model);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		return model;
 	}
 	
@@ -60,6 +65,8 @@ public class EditAboutController extends PermissionController {
 		String saved = aboutService.deleteContext(id);
 		model.addObject("saved", saved);
 		checkRole(model);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		return model;
 	}
 	
@@ -69,6 +76,8 @@ public class EditAboutController extends PermissionController {
 		model.setViewName("list/list-url-title-description");
 		model.addObject("mainList", aboutService.listOfContext());
 		checkRole(model);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		return model;
 	}
 }

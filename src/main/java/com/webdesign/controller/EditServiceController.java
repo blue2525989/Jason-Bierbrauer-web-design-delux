@@ -16,7 +16,8 @@ public class EditServiceController extends PermissionController {
 	public ModelAndView editServicesPage() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("edit/edit-services-page");
-		
+		/* add style, meta, navigation fragments */
+		addFragments(model);		
 		/* sets either user_role or admin_role */
 		checkRole(model);
 		return model;
@@ -26,7 +27,8 @@ public class EditServiceController extends PermissionController {
 	public ModelAndView editServicesContext() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("edit/edit-services/edit-context");
-		
+		/* add style, meta, navigation fragments */
+		addFragments(model);		
 		/* sets either user_role or admin_role */
 		checkRole(model);
 		return model;
@@ -36,7 +38,8 @@ public class EditServiceController extends PermissionController {
 	public ModelAndView editServicesList() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("edit/edit-services/edit-services");
-		
+		/* add style, meta, navigation fragments */
+		addFragments(model);		
 		/* sets either user_role or admin_role */
 		checkRole(model);
 		return model;
@@ -54,6 +57,8 @@ public class EditServiceController extends PermissionController {
 		model.setViewName("admin-pages/saved");
 		String saved = servicesService.addNewContext(title, description);
 		model.addObject("saved", saved);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		checkRole(model);
 		return model;
 	}
@@ -64,6 +69,8 @@ public class EditServiceController extends PermissionController {
 		model.setViewName("admin-pages/saved");
 		String saved = servicesService.deleteContext(id);
 		model.addObject("saved", saved);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		checkRole(model);
 		return model;
 	}
@@ -74,6 +81,8 @@ public class EditServiceController extends PermissionController {
 		model.setViewName("list/list-title-description");
 		model.addObject("mainList", servicesService.listOfContext());
 		checkRole(model);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		return model;
 	}
 	
@@ -87,6 +96,8 @@ public class EditServiceController extends PermissionController {
 		String saved = servicesService.addNewService(title, description);
 		model.addObject("saved", saved);
 		checkRole(model);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		return model;
 	}
 	
@@ -96,6 +107,8 @@ public class EditServiceController extends PermissionController {
 		model.setViewName("admin-pages/saved");
 		String saved = servicesService.deleteService(id);
 		model.addObject("saved", saved);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		checkRole(model);
 		return model;
 	}
@@ -105,6 +118,8 @@ public class EditServiceController extends PermissionController {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("list/list-title-description");
 		model.addObject("mainList", servicesService.listOfServices());
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		checkRole(model);
 		return model;
 	}

@@ -20,7 +20,7 @@
 		<br/>
 		<h2>Upload new files to storage.</h2>
         
-        <form class="form-group" action="/uploadFileS3" method="POST" enctype="multipart/form-data">        
+        <form class="form-group" action="/newMeta" method="POST">        
 	
 				<!-- half and half columns -->
 		        <div class="row">
@@ -34,77 +34,42 @@
 		        		</div>
 		        	</div>
 		        
-		        	<div class="col-md-6">
+		        	<div class="col-md-6" th:if="${imageList != null}">
 		        		<div class="form-group">
-		        			<label for="file">Please select a file</label>
-						 		<input name="file" class="form-control-file col-8" type="file" id="file-chooser" 
-						 			required="required" data-error="File is required." />
-								<div class="help-block with-errors"></div> <br/>
-		        		</div>
-		        	</div>	
-	
-		        </div>
-		        <!-- half and half columns -->
-		        <div class="row">
-		        
-		        	<div class="col-md-6">
-		        		<div class="form-group">
-		        			<label for="title">Please enter a title *</label>
-		        			<input id="title" type="text" name="title" class="form-control" placeholder="Please enter a title *" 
-		        				required="required" data-error="Please enter a title."/>
-		        			<div class="help-block with-errors"></div>
-		        		</div>
-		        	</div>
-		        	
-		        	<div class="col-md-6">
-		        		<div class="form-group">
-		        			<label for="title">Please enter a title *</label>
-		        			<input id="title" type="text" name="title" class="form-control" placeholder="Please enter a title *" 
-		        				required="required" data-error="Please enter a title."/>
-		        			<div class="help-block with-errors"></div>
+		        			<label for="title">Please select an image *</label>
+		        			<select class="form-control col-6"  name="iconUrl">
+					            <option th:each="image : ${imageList}"
+					                    th:text="${image.title}"
+					                    th:value="${image.url}"></option>
+					        </select>
 		        		</div>
 		        	</div>
 	
 		        </div>
-		        
 		        <div class="row">
-		        
-		        	<div class="col-md-6">
-		        		<div class="form-group">
-		        			<label for="title">Please enter a title *</label>
-		        			<input id="title" type="text" name="title" class="form-control" placeholder="Please enter a title *" 
-		        				required="required" data-error="Please enter a title."/>
-		        			<div class="help-block with-errors"></div>
-		        		</div>
-		        	</div>
-		        	
-		        	<div class="col-md-6">
-		        		<div class="form-group">
-		        			<label for="title">Please enter a title *</label>
-		        			<input id="title" type="text" name="title" class="form-control" placeholder="Please enter a title *" 
-		        				required="required" data-error="Please enter a title."/>
-		        			<div class="help-block with-errors"></div>
-		        		</div>
-		        	</div>
-	
-		        </div>
-		        <!-- full width text box -->
-		        <div class="row">
-		        
 		            <div class="col-md-12">
 		                <div class="form-group">
-		                    <label for="description">Brief file description *</label>
-		                    <textarea id="description" name="description" class="form-control" 
-		                    	placeholder="Enter a brief file description *" rows="4" required="required" 
-		                    	data-error="Please enter a brief description."></textarea>
+		                    <label for="metaDescription">Meta description *</label>
+		                    <textarea id="metaDescription" name="metaDescription" class="form-control" placeholder="Meta description no longer than 255 characters *" rows="4" required="required" data-error="Please,leave us a message."></textarea>
 		                    <div class="help-block with-errors"></div>
 		                </div>
 		            </div>
-	
+		            
 		        </div>
+		        
+		        <div class="row">
+		            <div class="col-md-12">
+		                <div class="form-group">
+		                    <label for="metaKeywords">Meta keywords *</label>
+		                    <textarea id="metaKeywords" name="metaKeywords" class="form-control" placeholder="Meta keywords seperated by a comma *" rows="4" required="required" data-error="Please,leave us a message."></textarea>
+		                    <div class="help-block with-errors"></div>
+		                </div>
+		            </div>
+		            
+		        </div>	        
 			 				 	
 			 	<br/>
-			    <button type="submit" id="upload-button">Upload to S3</button>
+			    <button type="submit" id="upload-button">New meta fragment</button>
 		</form>
         
         <br/><br/>

@@ -12,7 +12,8 @@ public class LoginController extends PermissionController {
 	public ModelAndView login() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("admin-pages/login");
-		
+		/* add style, meta, navigation fragments */
+		addFragments(model);		
 		/* sets either user_role or admin_role */
 		checkRole(model);
 		return model;

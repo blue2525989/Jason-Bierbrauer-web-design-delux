@@ -1,25 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
+<head th:unless="${#lists.isEmpty(metaFrag)}" th:each="meta : ${metaFrag}">
+				
+	<title th:text="${meta.title}"></title>
 	
-	<title th:if="${metaFrag != null}" th:text="${metaFrag.title}"></title>
-	<title th:if="${metaFrag eq null}">Jason Bierbrauer</title>
-	
-	<link rel="icon" type="image" th:if="${metaFrag != null}" th:href="${metaFrag.iconUrl}" />
-	<link rel="icon" type="image" th:if="${metaFrag eq null}" href="https://s3-us-west-2.amazonaws.com/blue-company-images/system/jb-ico.png" />
-	
+	<link rel="icon" type="image" th:href="${meta.iconUrl}" />
 	<meta name="author" content="Jason Bierbrauer"/>	
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
      <!-- meta description and keywords -->
     
-    <meta name="description" th:if="${metaFrag != null}" th:content="${metaFrag.metaDescription}"/>
-    <meta name="description" th:if="${metaFrag eq null}" content="Jason Bierbrauer web application design. Building small busniess 
-    websites for local companies."/>
+    <meta name="description" th:content="${meta.metaDescription}"/>
     
-     <meta name="keywords" th:if="${metaFrag != null}" th:content="${metaFrag.metaKeywords}"/>
-     <meta name="keywords" th:if="${metaFrag eq null}" content="Jason Bierbrauer, jason bierbrauer, java web application, java, 
-     spring boot, spring mvc, spring"/>
+     <meta name="keywords" th:content="${meta.metaKeywords}"/>
 	<!-- content type -->
 	
 	<meta http-equiv="Content-Type" context="text/html; charset=UTF-8" />	
@@ -34,16 +27,49 @@
 	<link href="css/style.css" rel="stylesheet"/>
 	
 	<!-- OVERRIDE STYLE SHEET WITH STYLESHEET FRAGMENT DATA -->
-	<style th:if="${styleFrag}" th:inline="text">
-body{background:[[${styleFrag.backgroundColor}]]!important;color:[[${styleFrag.textColor}]]!important;}
-.blue-header{background:[[${styleFrag.headerBackgroundColor}]]!important;}
-.blue-main-content{color:[[${styleFrag.textColor}]]!important;background:[[${styleFrag.mainContentBackgroundColor}]]!important;}
-.blue-odd-table{color:[[${styleFrag.textColor}]]!important;background:[[${styleFrag.oddTableBackGroundColor}]]!important;}
-.blue-even-table{color:[[${styleFrag.textColor}]]!important;background:[[${styleFrag.evenTableBackgroundColor}]]!important;}
-a{color:[[${styleFrag.linkColor}]]!important;}a:hover{color:[[${styleFrag.linkColor}]]!important;}
+	<style th:unless="${#lists.isEmpty(styleFrag)}"  th:each="style : ${styleFrag}" th:inline="text">
+body{background:[[${style.backgroundColor}]];color:[[${style.textColor}]];}
+.blue-header{background:[[${style.headerBackgroundColor}]]!important;}
+.blue-main-content{color:[[${style.textColor}]];background:[[${styleFrag.contentBackgroundColor}]];}
+.blue-odd-table{color:[[${style.linkColor}]];}
+a{color:[[${style.linkColor}]];}a:hover{color:[[${style.linkColor}]];}
 </style>
+<style th:if="${#lists.isEmpty(styleFrag)}"></style>
 
 </head>
+
+<head th:if="${#lists.isEmpty(metaFrag)}">
+	<title>Jason Bierbrauer</title>
+	<link rel="icon" type="image"href="https://s3-us-west-2.amazonaws.com/blue-company-images/system/jb-ico.png" />
+	<meta name="author" content="Jason Bierbrauer"/>	
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+     <!-- meta description and keywords -->
+    <meta name="description" content="Jason Bierbrauer web application design. Building small busniess websites for local companies."/>
+     <meta name="keywords" content="Jason Bierbrauer, jason bierbrauer, java web application, java, spring boot, spring mvc, spring"/>
+     
+     	<meta http-equiv="Content-Type" context="text/html; charset=UTF-8" />	
+	<!-- bootstrapJS -->
+	
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+	<script async="async"  src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous" />
+	<script  src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	
+	<!-- CSS styling -->
+	<link href="css/style.css" rel="stylesheet"/>
+	
+	<!-- OVERRIDE STYLE SHEET WITH STYLESHEET FRAGMENT DATA -->
+	<style th:unless="${#lists.isEmpty(styleFrag)}"  th:each="style : ${styleFrag}" th:inline="text">
+body{background:[[${style.backgroundColor}]];color:[[${style.textColor}]];}
+.blue-header{background:[[${style.headerBackgroundColor}]]!important;}
+.blue-main-content{color:[[${style.textColor}]];background:[[${styleFrag.contentBackgroundColor}]];}
+.blue-odd-table{color:[[${style.linkColor}]];}
+a{color:[[${style.linkColor}]];}a:hover{color:[[${style.linkColor}]];}
+</style>
+<style th:if="${#lists.isEmpty(styleFrag)}"></style>
+	
+</head> 
     <body>
        
 			<!--  HEADER -->
@@ -71,35 +97,31 @@ a{color:[[${styleFrag.linkColor}]]!important;}a:hover{color:[[${styleFrag.linkCo
 					  </button>
 				  	</div>
 
-			
+			<div th:unless="${#lists.isEmpty(navFrag)}">
 				  <div class="collapse navbar-collapse" id="navbarNavDropdown" 
-				  style="background-color:  #00000;">
+				  style="background-color:  #00000;"
+				  th:each="nav : ${navFrag}">
 				  
 				    <ul class="navbar-nav">
 		         		<li class="nav-item active">
-							<a th:if="${navFrag}" class="nav-link" href="/" 
-								th:text="${navFrag.homeButton}"></a>
-							<a th:if="${navFrag eq null}" class="nav-link" href="/">Home</a>
+							<a class="nav-link" href="/" 
+								th:text="${nav.homeButton}"></a>
 						</li>
 						<li class="nav-item active">
-							<a th:if="${navFrag}" class="nav-link" href="/services"
-								th:text="${navFrag.servicesButton}"></a>
-							<a th:if="${navFrag eq null}" class="nav-link" href="/services">Services offered</a>
+							<a class="nav-link" href="/services"
+								th:text="${nav.servicesButton}"></a>
 						</li>
 						<li class="nav-item active">
-							<a th:if="${navFrag}" class="nav-link" href="/contact"
-								th:text="${navFrag.contactButton}"></a>
-							<a th:if="${navFrag eq null}" class="nav-link" href="/contact">Get in Touch</a>
+							<a class="nav-link" href="/contact"
+								th:text="${nav.contactButton}"></a>
 						</li>
 						<li class="nav-item active">
-							<a th:if="${navFrag}" class="nav-link" href="/about"
-								th:text="${navFrag.aboutButton}"></a>
-							<a th:if="${navFrag eq null}" class="nav-link" href="/about">A little about me</a>
+							<a class="nav-link" href="/about"
+								th:text="${nav.aboutButton}"></a>
 						</li>
 						<li class="nav-item active">
-							<a th:if="${navFrag}" class="nav-link" href="/projects"
-								th:text="${navFrag.projectsButton}"></a>
-							<a th:if="${navFrag eq null}" class="nav-link" href="/projects">Projects</a>
+							<a class="nav-link" href="/projects"
+								th:text="${nav.projectsButton}"></a>
 								
 						</li>						
 						<li th:if="${adminrole == true}" class="nav-item active">
@@ -111,8 +133,38 @@ a{color:[[${styleFrag.linkColor}]]!important;}a:hover{color:[[${styleFrag.linkCo
 		        	</ul>
 
 		      </div>
-		 
+		  </div>
 		  
+		  <div th:if="${#lists.isEmpty(navFrag)}">
+		      <div class="collapse navbar-collapse" id="navbarNavDropdown" 
+				  style="background-color:  #00000;">
+				  
+				    <ul class="navbar-nav">
+		         		<li class="nav-item active">
+							<a class="nav-link" href="/">Home</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="/services">Services offered</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="/contact">Get in Touch</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="/about">A little about me</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="/projects">Projects</a>
+						</li>						
+						<li th:if="${adminrole == true}" class="nav-item active">
+							<a class="nav-link" href="/admin">Administration Page</a>
+						</li>
+						<li th:if="${adminrole == true}" class="nav-item active">
+							<a class="nav-link" href="/login">Login/Logout</a>
+						</li> 
+		        	</ul>
+
+		      </div>
+		   </div>
 		    </nav>
 		    
 		    			<!-- ADMIN PAGE MENU-->

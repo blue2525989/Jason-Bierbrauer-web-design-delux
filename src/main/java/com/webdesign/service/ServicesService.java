@@ -20,16 +20,25 @@ public class ServicesService {
 	private ServicesRepository servicesRepo;
 	
 	public String addNewService(String title, String description) {
-		Services service = new Services(title, description);
-		servicesRepo.save(service);
-		String saved = "The service, " + title + ", has been saved.";
+		String saved = "";
+		try {
+			Services service = new Services(title, description);
+			servicesRepo.save(service);
+			saved = "The new page context has been saved.";
+		} catch (Exception e) {
+			saved = "You have entered an incorrect parameter.";
+		}		
 		return saved;
 	}
 	
 	public String deleteService(Long id) {
-		String title = servicesRepo.findById(id).getName();
-		servicesRepo.delete(id);
-		String saved = "The service, " + title + ", has been deleted.";
+		String saved = "";
+		try {
+			servicesRepo.delete(id);
+			saved = "The page context has been deleted.";
+		} catch (Exception e) {
+			saved = "You have entered an incorrect parameter.";
+		}		
 		return saved;
 	}
 	
@@ -43,15 +52,25 @@ public class ServicesService {
 	private ServicesContextRepository contextRepo;
 	
 	public String addNewContext(String title, String description) {
-		ServicesContext context = new ServicesContext(title, description);
-		contextRepo.save(context);
-		String saved = "The new page context has been saved.";
+		String saved = "";
+		try {
+			ServicesContext context = new ServicesContext(title, description);
+			contextRepo.save(context);
+			saved = "The new page context has been saved.";
+		} catch (Exception e) {
+			saved = "You have entered an incorrect parameter.";
+		}		
 		return saved;
 	}
 	
 	public String deleteContext(Long id) {
-		contextRepo.delete(id);
-		String saved = "The page context has been deleted.";
+		String saved = "";
+		try {
+			contextRepo.delete(id);
+			saved = "The page context has been deleted.";
+		} catch (Exception e) {
+			saved = "You have entered an incorrect parameter.";
+		}		
 		return saved;
 	}
 	

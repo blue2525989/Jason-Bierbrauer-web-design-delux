@@ -16,7 +16,8 @@ public class EditProjectsController extends PermissionController {
 	public ModelAndView editProjectsPage() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("edit/edit-projects-page");
-		
+		/* add style, meta, navigation fragments */
+		addFragments(model);		
 		/* sets either user_role or admin_role */
 		checkRole(model);
 		return model;
@@ -26,7 +27,8 @@ public class EditProjectsController extends PermissionController {
 	public ModelAndView editProjectsContext() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("edit/edit-projects/edit-context");
-		
+		/* add style, meta, navigation fragments */
+		addFragments(model);		
 		/* sets either user_role or admin_role */
 		checkRole(model);
 		return model;
@@ -36,7 +38,8 @@ public class EditProjectsController extends PermissionController {
 	public ModelAndView editProjectsList() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("edit/edit-projects/edit-projects");
-		
+		/* add style, meta, navigation fragments */
+		addFragments(model);		
 		/* sets either user_role or admin_role */
 		checkRole(model);
 		return model;
@@ -53,6 +56,8 @@ public class EditProjectsController extends PermissionController {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("admin-pages/saved");
 		String saved = projectsService.addNewContext(title, description);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		model.addObject("saved", saved);
 		checkRole(model);
 		return model;
@@ -64,6 +69,8 @@ public class EditProjectsController extends PermissionController {
 		model.setViewName("admin-pages/saved");
 		String saved = projectsService.deleteContext(id);
 		model.addObject("saved", saved);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		checkRole(model);
 		return model;
 	}
@@ -73,6 +80,8 @@ public class EditProjectsController extends PermissionController {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("list/list-title-description");
 		model.addObject("mainList", projectsService.listOfContext());
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		checkRole(model);
 		return model;
 	}
@@ -86,6 +95,8 @@ public class EditProjectsController extends PermissionController {
 		model.setViewName("admin-pages/saved");
 		String saved = projectsService.addNewProject(url, title, description);
 		model.addObject("saved", saved);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		checkRole(model);
 		return model;
 	}
@@ -96,6 +107,8 @@ public class EditProjectsController extends PermissionController {
 		model.setViewName("admin-pages/saved");
 		String saved = projectsService.deleteProject(id);
 		model.addObject("saved", saved);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		checkRole(model);
 		return model;
 	}
@@ -105,6 +118,8 @@ public class EditProjectsController extends PermissionController {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("list/list-title-description");
 		model.addObject("mainList", projectsService.listOfProjects());
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		checkRole(model);
 		return model;
 	}

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.webdesign.service.S3Service;
 import com.webdesign.service.SiteFormatService;
 
 @Controller
@@ -16,17 +17,23 @@ public class EditSiteFormatController extends PermissionController {
 	public ModelAndView editServices() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("edit/edit-site-format");
-		
+		/* add style, meta, navigation fragments */
+		addFragments(model);		
 		/* sets either user_role or admin_role */
 		checkRole(model);
 		return model;
 	}
 	
+	@Autowired 
+	private S3Service s3Service;
+	
 	@RequestMapping(value="/editMeta", method=RequestMethod.GET)
 	public ModelAndView editMetaData() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("edit/edit-site-format/edit-meta");
-		
+		model.addObject("imageList", s3Service.listAllFileUploads());
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		/* sets either user_role or admin_role */
 		checkRole(model);
 		return model;
@@ -36,7 +43,8 @@ public class EditSiteFormatController extends PermissionController {
 	public ModelAndView editNav() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("edit/edit-site-format/edit-nav");
-		
+		/* add style, meta, navigation fragments */
+		addFragments(model);		
 		/* sets either user_role or admin_role */
 		checkRole(model);
 		return model;
@@ -46,7 +54,8 @@ public class EditSiteFormatController extends PermissionController {
 	public ModelAndView editStyle() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("edit/edit-site-format/edit-style");
-		
+		/* add style, meta, navigation fragments */
+		addFragments(model);		
 		/* sets either user_role or admin_role */
 		checkRole(model);
 		return model;
@@ -68,6 +77,8 @@ public class EditSiteFormatController extends PermissionController {
 		model.setViewName("admin-pages/saved");
 		String saved = siteFormatService.addNewStyle(backgroundColor, headerBackgroundColor, textColor,
 				mainContentBackgroundColor, evenTableBackgroundColor, oddTableBackgroundColor, linkColor);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		model.addObject("saved", saved);
 		checkRole(model);
 		return model;
@@ -79,6 +90,8 @@ public class EditSiteFormatController extends PermissionController {
 		model.setViewName("admin-pages/saved");
 		String saved = siteFormatService.deleteStyle(id);
 		model.addObject("saved", saved);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		checkRole(model);
 		return model;
 	}
@@ -88,6 +101,8 @@ public class EditSiteFormatController extends PermissionController {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("list/list-style");
 		model.addObject("mainList", siteFormatService.listOfStyle());
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		checkRole(model);
 		return model;
 	}
@@ -99,6 +114,8 @@ public class EditSiteFormatController extends PermissionController {
 		model.setViewName("admin-pages/saved");
 		String saved = siteFormatService.addNewMeta(title, iconUrl, metaDescription, metaKeywords);
 		model.addObject("saved", saved);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		checkRole(model);
 		return model;
 	}
@@ -109,6 +126,8 @@ public class EditSiteFormatController extends PermissionController {
 		model.setViewName("admin-pages/saved");
 		String saved = siteFormatService.deleteMeta(id);
 		model.addObject("saved", saved);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		checkRole(model);
 		return model;
 	}
@@ -118,18 +137,21 @@ public class EditSiteFormatController extends PermissionController {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("list/list-meta");
 		model.addObject("mainList", siteFormatService.listOfMetas());
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		checkRole(model);
 		return model;
 	}
 	
 	@RequestMapping(value="/newNav", method=RequestMethod.POST)
 	public ModelAndView newNav(@RequestParam String homeButton, @RequestParam String servicesButton,
-			@RequestParam String contactButton, @RequestParam String aboutButton, @RequestParam String projectsButton,
-			@RequestParam String oddTableBackgroundColor, @RequestParam String linkColor) {
+			@RequestParam String contactButton, @RequestParam String aboutButton, @RequestParam String projectsButton) {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("admin-pages/saved");
 		String saved = siteFormatService.addNewNav(homeButton, servicesButton, contactButton, aboutButton, projectsButton);
 		model.addObject("saved", saved);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		checkRole(model);
 		return model;
 	}
@@ -140,6 +162,8 @@ public class EditSiteFormatController extends PermissionController {
 		model.setViewName("admin-pages/saved");
 		String saved = siteFormatService.deleteNav(id);
 		model.addObject("saved", saved);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		checkRole(model);
 		return model;
 	}
@@ -149,6 +173,8 @@ public class EditSiteFormatController extends PermissionController {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("list/list-nav");
 		model.addObject("mainList", siteFormatService.listOfNavs());
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		checkRole(model);
 		return model;
 	}

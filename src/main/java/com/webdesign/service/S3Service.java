@@ -104,20 +104,23 @@ public class S3Service {
 				}
 		    }
 		}
-		
-		FileUpload img = new FileUpload();
-		img.setTitle(file.getOriginalFilename());
-		img.setUrl(S3URL + FOLDERNAME + "/" +file.getOriginalFilename());
-		img.setDescription(description);
-		img.setFilename(file.getOriginalFilename());
-		// SAVE TO A REPOSITORY
-		fileUploadRepo.save(img);
-		
-		String saved = "The file, " + file.getOriginalFilename() + " has been saved to the folder, " 
-				+ FOLDERNAME + ". The link for the new file is, <a target='_blank' href='" 
-				+ img.getUrl() + "' alt='" + file.getOriginalFilename() + "'"
-						+ " title='" + file.getOriginalFilename() + "'>" + file.getOriginalFilename() + "</a>";
-		
+		String saved;
+		try {
+			FileUpload img = new FileUpload();
+			img.setTitle(file.getOriginalFilename());
+			img.setUrl(S3URL + FOLDERNAME + "/" +file.getOriginalFilename());
+			img.setDescription(description);
+			img.setFilename(file.getOriginalFilename());
+			// SAVE TO A REPOSITORY
+			fileUploadRepo.save(img);
+			saved = "The file, " + file.getOriginalFilename() + " has been saved to the folder, " 
+					+ FOLDERNAME + ". The link for the new file is, <a target='_blank' href='" 
+					+ img.getUrl() + "' alt='" + file.getOriginalFilename() + "'"
+							+ " title='" + file.getOriginalFilename() + "'>" + file.getOriginalFilename() + "</a>";
+		} catch (Exception e) {
+			return "There was an error saving the file in the repository.";
+		}
+				
 		return saved;
 	}
 	
@@ -128,9 +131,10 @@ public class S3Service {
 	 */
 	
 	public String deleteFile(Long id) {
-		String fileName = fileUploadRepo.findById(id).getFilename();
-		fileUploadRepo.delete(id);
+		String fileName;
 		try {
+			fileName = fileUploadRepo.findById(id).getFilename();
+			fileUploadRepo.delete(id);
 			s3client.deleteObject(new DeleteObjectRequest(FOLDERNAME, fileName));
 		} catch (AmazonServiceException ase) {
 			String errorMsg = 
@@ -142,6 +146,8 @@ public class S3Service {
 			return errorMsg;
 		} catch (AmazonClientException ace) {
 			return ace.getMessage();
+		} catch (Exception e) {
+			return e.getMessage();
 		}
 		String saved = "The file, " + fileName + ", has been deleted from the repository and S3 storage.";
 		return saved;

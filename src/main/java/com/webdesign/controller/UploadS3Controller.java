@@ -21,7 +21,8 @@ public class UploadS3Controller extends PermissionController {
 	public ModelAndView uploadS3() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("edit/upload-s3");
-		
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		/* sets either user_role or admin_role */
 		checkRole(model);
 		return model;
@@ -31,7 +32,8 @@ public class UploadS3Controller extends PermissionController {
 	public ModelAndView uploadFileToS3Page() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("edit/upload/upload-file");
-		
+		/* add style, meta, navigation fragments */
+		addFragments(model);		
 		/* sets either user_role or admin_role */
 		checkRole(model);
 		return model;
@@ -44,6 +46,8 @@ public class UploadS3Controller extends PermissionController {
 		model.setViewName("admin-pages/saved");
 		String saved = s3Service.upload(file, event, title, description);
 		model.addObject("saved", saved);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		checkRole(model);
 		return model;
 	}
@@ -54,6 +58,8 @@ public class UploadS3Controller extends PermissionController {
 		model.setViewName("admin-pages/saved");
 		String saved = s3Service.deleteFile(id);
 		model.addObject("saved", saved);
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		checkRole(model);
 		return model;
 	}
@@ -63,6 +69,8 @@ public class UploadS3Controller extends PermissionController {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("list/list-files");
 		model.addObject("mainList", s3Service.listAllFileUploads());
+		/* add style, meta, navigation fragments */
+		addFragments(model);
 		checkRole(model);
 		return model;
 	}

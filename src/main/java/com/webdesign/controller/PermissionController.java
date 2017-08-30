@@ -1,12 +1,41 @@
 package com.webdesign.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.webdesign.service.SiteFormatService;
+
 public class PermissionController {
 	
 	// autowire the repository to the controller
+	@Autowired
+	private SiteFormatService siteFormatService;
+	
+	public void addFragments(ModelAndView model) {
+		addNavFrag(model);
+		addStyle(model);
+		addMeta(model);
+	}
+	
+	public void addNavFrag(ModelAndView model) {
+		if (siteFormatService.specificNav() != null) {
+			model.addObject("navFrag", siteFormatService.specificNav());
+		}
+	}
+	
+	public void addStyle(ModelAndView model) {
+		if (siteFormatService.specificStyle() != null) {
+			model.addObject("styleFrag", siteFormatService.specificStyle());
+		}
+	}
+	
+	public void addMeta(ModelAndView model) {
+		if (siteFormatService.specificMeta() != null) {
+			model.addObject("metaFrag", siteFormatService.specificMeta());
+		}
+	}
 		
 	/**
 	 * This method checks the users authentication level
@@ -18,7 +47,11 @@ public class PermissionController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		boolean hasUserRole = authentication.getAuthorities().stream()
 		         .anyMatch(r -> r.getAuthority().equals("ROLE_USER"));
-		return hasUserRole;
+		if (hasUserRole) {
+			return hasUserRole;
+		} else {
+			return false;
+		}
 	}
 	
 	/**
@@ -32,7 +65,11 @@ public class PermissionController {
 		Authentication authentication2 = SecurityContextHolder.getContext().getAuthentication();
 		boolean hasAdminRole = authentication2.getAuthorities().stream()
 		          .anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
-		return hasAdminRole;
+		if (hasAdminRole) {
+			return hasAdminRole;
+		} else {
+			return false;
+		}
 	}
 	
 	public void checkRole(ModelAndView model) {

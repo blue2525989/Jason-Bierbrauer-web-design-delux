@@ -18,15 +18,25 @@ public class AboutService {
 	private AboutContextRepository contextRepo;
 	
 	public String addNewContext(String url, String title, String description) {
-		AboutContext context = new AboutContext(url, title, description);
-		contextRepo.save(context);
-		String saved = "The new page context has been saved.";
+		String saved = "";
+		try {
+			AboutContext context = new AboutContext(url, title, description);
+			contextRepo.save(context);
+			saved = "The new page context has been saved.";
+		} catch (Exception e) {
+			saved = "You have entered an incorrect parameter.";
+		}		
 		return saved;
 	}
 	
 	public String deleteContext(Long id) {
-		contextRepo.delete(id);
-		String saved = "The page context has been deleted.";
+		String saved = "";
+		try {
+			contextRepo.delete(id);
+			saved = "The page context has been deleted.";
+		} catch (Exception e) {
+			saved = "You have entered an incorrect parameter.";
+		}		
 		return saved;
 	}
 	

@@ -10,6 +10,7 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.sns.AmazonSNSClient;
 
 
 @Configuration
@@ -21,7 +22,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 	private static final String PWORD = "";
 	
 	@SuppressWarnings("unused")
-	private static final String LOCAL = "";
+	private static final String LOCAL = "localhost:3306/";
 	
 	// add view controllers for pages that deal with spring security
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -32,7 +33,15 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 	public BasicAWSCredentials basicAWSCredentials() {
 		return new BasicAWSCredentials("", "");
 	}
- 
+    
+    @SuppressWarnings("deprecation")
+    @Bean
+    public AmazonSNSClient amazonSnsClient(BasicAWSCredentials awsCredentials) {
+    	AmazonSNSClient amazonSNSClient = new AmazonSNSClient(awsCredentials);
+    	amazonSNSClient.setRegion(Region.getRegion(Regions.fromName("us-west-2")));
+    	return amazonSNSClient;
+    }
+
 	@SuppressWarnings("deprecation")
 	@Bean
     public AmazonS3Client amazonS3Client(BasicAWSCredentials awsCredentials) {

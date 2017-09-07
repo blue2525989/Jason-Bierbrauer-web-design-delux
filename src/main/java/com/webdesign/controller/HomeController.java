@@ -7,12 +7,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.webdesign.service.HomeService;
+import com.webdesign.service.SmsService;
 
 @Controller
 public class HomeController extends PermissionController {
  
    @Autowired
    private HomeService homeService;
+   
+   @Autowired
+   private SmsService smsService;
  
    @RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
    public ModelAndView welcomePage() {
@@ -23,6 +27,7 @@ public class HomeController extends PermissionController {
 		addFragments(model);		
 		/* sets either user_role or admin_role */
 		checkRole(model);
+		smsService.sendSMSMessage();
 		return model;
 	}
 }
